@@ -1,0 +1,16 @@
+{
+  "C_Cpp.clang_format_path": "/usr/local/bin/clang-format",
+  "clang-format.language.cpp.style": "file",
+
+  "[cpp]": {
+    "editor.defaultFormatter": "ebextensions.clang-format-2025"
+  },
+
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "python.formatting.provider": "autopep8",
+
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false
+}

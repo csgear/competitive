@@ -17,7 +17,7 @@ int main() {
   cin >> n;
 
   for (long long k = 1; k <= n; k++) {
-    ll total = (k * k * (k * k - 1)) / 2LL;
+    ll total = (k * k * (k * k - 1)) / 2;
     ll attack = 4LL * (k - 1) * (k - 2);
     cout << total - attack << endl;
   }
