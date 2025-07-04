@@ -1,0 +1,56 @@
+// https://cses.fi/problemset/task/1092
+// Two Sets
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    long long n;
+    cin >> n;
+
+    long long total_sum = n * (n + 1) / 2;
+
+    if (total_sum % 2 != 0) {
+        cout << "NO\n";
+        return 0;
+    }
+
+    long long target = total_sum / 2;
+
+    vector<int> set1, set2;
+    long long current_sum = 0;
+
+    for (int i = n; i >= 1; i--) {
+        if (current_sum + i <= target) {
+            set1.push_back(i);
+            current_sum += i;
+        } else {
+            set2.push_back(i);
+        }
+    }
+
+    // Output result
+    cout << "YES\n";
+
+    // Output first set
+    cout << set1.size() << "\n";
+    for (int i = 0; i < set1.size(); i++) {
+        cout << set1[i];
+        if (i < set1.size() - 1) cout << " ";
+    }
+    cout << "\n";
+
+    // Output second set
+    cout << set2.size() << "\n";
+    for (int i = 0; i < set2.size(); i++) {
+        cout << set2[i];
+        if (i < set2.size() - 1) cout << " ";
+    }
+    cout << "\n";
+
+    return 0;
+}
