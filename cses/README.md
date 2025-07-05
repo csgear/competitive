@@ -24,3 +24,20 @@ where
 $$
 \text{factor} = 10^d
 $$
+
+## Fast Doubling Method (Recommended) or or fast matrix exponentiation to compute fibonacci number of n
+
+The fast doubling method uses the following recurrence relations:
+For even n (n = 2k):
+$$F(2k) = F(k) \cdot (2 \cdot F(k+1) - F(k))$$
+$$F(2k+1) = F(k+1)^2 + F(k)^2$$
+
+For odd n (n = 2k+1):
+$$F(2k+1) = F(k+1)^2 + F(k)^2$$
+$$F(2k+2) = F(k+1)^2 + F(k)^2 + 2 \cdot F(k) \cdot F(k+1)$$
+
+Time Complexity:
+$$O(\log n)$$
+Space Complexity:
+$$O(\log n)$$
+This method is optimal for computing single Fibonacci numbers with very large indices (up to $10^{18}$).
