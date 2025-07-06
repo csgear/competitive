@@ -3,6 +3,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// sweep the string
 int main() {
     string s;
     cin >> s;

@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+// simulate the process
 int main() {
     long long n;
     cin >> n;
