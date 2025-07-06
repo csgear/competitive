@@ -12,9 +12,11 @@ int main() {
     } else if (n == 2 || n == 3) {
         cout << "NO SOLUTION" << endl;
     } else {
+        // even numbers first
         for (int i = 2; i <= n; i += 2) {
             cout << i << " ";
         }
+        // odd numbers second
         for (int i = 1; i <= n; i += 2) {
             cout << i << " ";
         }

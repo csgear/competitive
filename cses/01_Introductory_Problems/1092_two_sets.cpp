@@ -24,6 +24,7 @@ int main() {
     vector<int> set1, set2;
     long long current_sum = 0;
 
+    // greedy approach
     for (int i = n; i >= 1; i--) {
         if (current_sum + i <= target) {
             set1.push_back(i);
