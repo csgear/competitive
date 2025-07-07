@@ -1,9 +1,14 @@
-## Notes
+# CSES Problem Set
 
-## Counting the number of '5's in 1 to n
+- [Introductory Problems](01_Introductory_Problems/README.md)
+- [Sorting and Searching](02_Sorting_and_Searching/README.md)
+- [Dynamic Programming](03_Dynamic_Programming/README.md)
 
+
+## Others
 For each digit position $d$ (units, tens, hundreds, ...), split $n$ into:
 
+-
 - **higher**: digits to the left of $d$
 - **current**: digit at position $d$
 - **lower**: digits to the right of $d$
@@ -24,6 +29,8 @@ where
 $$
 \text{factor} = 10^d
 $$
+
+### 1073 Fibonacci Numbers
 
 ## Fast Doubling Method (Recommended) or or fast matrix exponentiation to compute fibonacci number of n
 
