@@ -100,3 +100,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 rebel.xml
+
+.DS_Store
