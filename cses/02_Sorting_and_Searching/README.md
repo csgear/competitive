@@ -44,3 +44,17 @@ Find median (sorting O(n \* log n)) or selection O(n)
 ### 2182 Missing Coin Sum
 
 Suppose that we can create all sums 1,2, ..., k using a subset of coins. Then we add coin new coin with vaule x, can we get k+1?
+
+### 2216 Collecting Numbers
+
+It's a tricky implementation. If x is before x-1, we increase round by 1
+
+### 2217 Collection Numbers II
+
+Only think about local
+
+### 1141 Playlist
+
+Find the max size of a sliding window containing unique songs
+
+###
