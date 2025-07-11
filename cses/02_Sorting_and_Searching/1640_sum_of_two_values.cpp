@@ -6,24 +6,26 @@ using namespace std;
 int main() {
     int n, x;
     cin >> n >> x;
-    vector<pair<int, int>> a(n + 1);
-    for (int i = 1; i <= n; i++) {
+    vector<pair<int, int>> a(n);
+    for (int i = 0; i < n; i++) {
         cin >> a[i].first;
-        a[i].second = i;
+        a[i].second = i + 1;  // 1-indexed output
     }
     sort(a.begin(), a.end());
-    int i = 1, j = n;
-    while (i < j) {
-        if (a[i].first + a[j].first == x) {
-            cout << a[i].second << " " << a[j].second << endl;
+
+    int left = 0, right = n - 1;
+    while (left < right) {
+        int sum = a[left].first + a[right].first;
+        if (sum == x) {
+            cout << a[left].second << " " << a[right].second << endl;
             return 0;
-        }
-        if (a[i].first + a[j].first < x) {
-            i++;
+        } else if (sum < x) {
+            left++;
         } else {
-            j--;
+            right--;
         }
     }
+
     cout << "IMPOSSIBLE" << endl;
     return 0;
 }

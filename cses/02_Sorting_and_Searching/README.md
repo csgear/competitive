@@ -31,7 +31,9 @@ Like task scheduling problem with interval. Always pick the movie which ends ear
 
 ### 1640 Sum of Two Values
 
-You can use either sorting or map to find a + b = x
+You can use either sorting or map to find a + b = x,
+
+We can solve it by 2-points after sorting. (Not it's not sliding window)
 
 ### 1643 Maximum Subarray Sum
 
@@ -57,4 +59,12 @@ Only think about local
 
 Find the max size of a sliding window containing unique songs
 
-###
+### 1660 Subarray Sum I
+
+for all positive numbers, use sliding window to find the nunber of subarrays
+
+### 1661 Subarray Sum II
+
+if the array contains negative numbers, sliding window doesn't work out.
+
+Convert the sum from [i, j] to be prefix_sum[j] - prefix_sum[i-1], then use map
