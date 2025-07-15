@@ -18,8 +18,6 @@ where:
 
 ### 1636 Coin Combinations II
 
-**Problem**: Count the number of distinct ordered ways to produce a money sum $x$ using available coins (unbounded knapsack).
-
 **DP Formula**:
 $$dp[i] = \sum_{j=0}^{n-1} dp[i - values[j]] \quad \text{for} \quad i - values[j] \geq 0$$
 
@@ -28,3 +26,19 @@ $$dp[i] = \sum_{j=0}^{n-1} dp[i - values[j]] \quad \text{for} \quad i - values[j
 - Iterate through coins first, then amounts
 - For each coin $values[j]$, update all amounts $\geq values[j]$
 - This ensures we count all possible orderings
+
+### 1637 Removing digits
+
+try every digit of i for i from 1 to n, dp[0] = 0
+
+### 1638 Grid Path I
+
+only can go right and down, so dp[i][j] = dp[i-1][j] + dp[i][j-1]
+
+for base case dp[0][0] = 0 or 1 if dp[0][0] = '\*'
+
+### 1158 Book Shop
+
+Classic 0/1 knapsack problem
+
+###
