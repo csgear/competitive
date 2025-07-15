@@ -9,6 +9,7 @@
 - [Mathematics](07_Mathematics/README.md)
 - [String Algorithms](08_String_Algorithms/README.md)
 - [Geometry](09_Geometry/README.md)
+- [Advanced Techniques](10_Advanced_Techniques/README.md)
 - [Sliding Window Problems](11_Sliding_Window_Problems/README.md)
 - [Interactive Problems](12_Interactive_Problems/README.md)
 - [Bitwise Operations](13_Bitwise_Operations/README.md)
