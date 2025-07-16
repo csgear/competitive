@@ -11,6 +11,7 @@ int main() {
         cin >> a[i];
     }
     vector<int> towers;
+    // longest non-decreasing subsequence
     for (auto &x : a) {
         auto it = upper_bound(towers.begin(), towers.end(), x);
         if (it == towers.end()) {
