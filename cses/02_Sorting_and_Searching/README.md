@@ -59,6 +59,18 @@ Only think about local
 
 Find the max size of a sliding window containing unique songs
 
+### 1073 Towers
+
+Greedy approach: for each cube, find the smallest tower top that is >= current cube. If no such tower exists, create a new tower. Use multiset for efficient operations.
+
+### 3420 Distinct Value Subarrays
+
+Count subarrays where all elements are distinct. Use sliding window with two pointers and hashmap to track last position of each element. When duplicate found, move left pointer.
+
+### 3421 Distinct Value Subsequences
+
+Count subsequences where all elements are distinct. Use combinatorial approach: for each distinct element with frequency f, we have (f+1) choices (don't include or include once). Multiply all choices and subtract 1 for empty subsequence.
+
 ### 1660 Subarray Sum I
 
 for all positive numbers, use sliding window to find the nunber of subarrays
