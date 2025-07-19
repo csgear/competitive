@@ -7,8 +7,7 @@ Simple iterative algorithm to generate the sequence based on the rules provided.
 
 ### 1083 Missing Number
 
-Mathematical approach
-To find the missing number in a sequence from 1 to n, calculate the expected sum of the first n natural numbers using the formula:
+Mathematical approach: calculate expected sum of first n natural numbers using formula n(n+1)/2, then subtract the sum of given numbers. The difference is the missing number.
 
 ### 1069 Repetitions
 
@@ -41,16 +40,13 @@ There are ((k-1) x (k-2)) such ( 2 x 3 ) rectangles that fit horizontally and ((
 
 ### 1092 Two Sets
 
-This problem can be solved using a greedy approach
-To divide the numbers from 1 to n into two sets with equal sum, we can use the following approach:
+This problem can be solved using a greedy approach.
+To divide the numbers from 1 to n into two sets with equal sum:
 
-1. Calculate the total sum of numbers from 1 to n using the formula:  
-   $$\text{total_sum} = \frac{n(n + 1)}{2}$$
-2. If the total sum is odd, it's impossible to divide into two equal sets, so return "NO".
-3. If the total sum is even, we can use a greedy approach to fill two sets:
-   - Start from n and add numbers to the first set until the sum reaches half of the total sum.
-   - The remaining numbers will automatically go into the second set.
-   -
+1. Calculate the total sum: total_sum = n(n+1)/2
+2. If the total sum is odd, return "NO" (impossible to divide equally)
+3. If even, use greedy approach: start from n and add numbers to first set until sum reaches total_sum/2
+4. Remaining numbers automatically go to the second set
 
 ### 1617 Bit Strings
 
@@ -58,7 +54,7 @@ Compute 2^n % (10^9 + 7) using fast exponentiation.
 
 ### 1618 Trailing Zeros
 
-calculates the number of factors 5 in n! by dividing n by 5,5^2,5^3 etc.
+Count factors of 5 in n! by summing floor(n/5^i) for i = 1,2,3,... Since factors of 2 are more abundant than factors of 5, the number of trailing zeros equals the number of factor pairs (2,5), which is determined by factors of 5.
 
 ### 1754 Coin Piles
 
@@ -110,8 +106,7 @@ To find j for a given i: j = col + (row - i)
 
 ### 3399 Raab Game I
 
-One possbile player 1 plays '1,2,3,4,....,n',
-player2 needs to play 'a+1,a+2 ..., a+b,1,...,a,a+b+1,...,n'
+Game theory problem. One possible strategy: player 1 plays '1,2,3,4,...,n', while player 2 needs to play 'a+1,a+2,...,a+b,1,...,a,a+b+1,...,n' to achieve optimal play.
 
 ### 3419 Mex Grid Construction
 
@@ -133,3 +128,13 @@ Always starting from 'A' to 'Z', Count the frequencies of each letter.
 Using backtracking, place the smallest letter possible, otherwiese try the next one.
 
 ### 1625 Grid path description
+
+DFS with backtracking to find all possible paths from top-left to bottom-left corner following the given direction string. Use pruning optimizations to avoid unnecessary exploration.
+
+### 3420 Distinct Values Subarrays
+
+Count subarrays where all elements are distinct. Use sliding window with two pointers and hashmap to track last position of each element. When duplicate found, move left pointer.
+
+### 3421 Distinct Values Subsequences
+
+Count subsequences where all elements are distinct. Use combinatorial approach: for each distinct element with frequency f, we have (f+1) choices (don't include or include once). Multiply all choices and subtract 1 for empty subsequence.
