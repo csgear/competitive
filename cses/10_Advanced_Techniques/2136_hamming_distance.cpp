@@ -16,7 +16,7 @@ signed main() {
         cin >> s;
         for (int j = 0; j < k; ++j) {
             if (s[j] == '1') {
-                b[i] |= 1 << j;
+                b[i] |= 1 << (k - j - 1);
             }
         }
     }
