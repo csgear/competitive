@@ -4,6 +4,40 @@
 using namespace std;
 
 const int MOD = 1e9 + 7;
+const int MAXN = 5005;
+
+int trie[MAXN][26];
+bool isEnd[MAXN];
+int nodeCount = 0;
+
+void insert(const string& word) {
+    int curr = 0;
+    for (char c : word) {
+        int idx = c - 'a';
+        if (trie[curr][idx] == 0) {
+            trie[curr][idx] = ++nodeCount;
+        }
+        curr = trie[curr][idx];
+    }
+    isEnd[curr] = true;
+}
+
+vector<int> findMatches(const string& s, int start) {
+    vector<int> matches;
+    int curr = 0;
+
+    for (int i = start; i < s.length(); i++) {
+        int idx = s[i] - 'a';
+        if (trie[curr][idx] == 0) {
+            break;
+        }
+        curr = trie[curr][idx];
+        if (isEnd[curr]) {
+            matches.push_back(i - start + 1);
+        }
+    }
+    return matches;
+}
 
 int main() {
     ios::sync_with_stdio(false);
@@ -13,34 +47,25 @@ int main() {
     int n;
     cin >> s >> n;
 
-    set<string> words;
-
     for (int i = 0; i < n; ++i) {
-        string ss;
-        cin >> ss;
-        words.insert(ss);
+        string word;
+        cin >> word;
+        insert(word);
     }
 
-    vector<long long> dp(n + 1, 0);
+    int len = s.length();
+    vector<long long> dp(len + 1, 0);
     dp[0] = 1;
 
-    for (int i = 1; i <= n; ++i) {
-        for (const string& word : words) {
-            int wordLen = word.size();
-            if (wordLen <= i) {
-                bool matches = true;
-                for (int j = 0; j < wordLen; j++) {
-                    if (s[i - wordLen + j] != word[j]) {
-                        matches = false;
-                        break;
-                    }
-                }
-                if (matches) {
-                    dp[i] = (dp[i] + dp[i - wordLen]) % MOD;
-                }
-            }
+    for (int i = 0; i < len; ++i) {
+        if (dp[i] == 0) continue;
+
+        vector<int> matches = findMatches(s, i);
+        for (int wordLen : matches) {
+            dp[i + wordLen] = (dp[i + wordLen] + dp[i]) % MOD;
         }
     }
-    cout << dp[n] << '\n';
+
+    cout << dp[len] << '\n';
     return 0;
 }
