@@ -1,4 +1,4 @@
-// https://cses.fi/problemset/task/1733
+// https://cses.fi/problemset/task/1732
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -20,17 +20,15 @@ int main() {
         nxt[i] = j;
     }
 
-    vector<int> periods;
+    vector<int> borders;
     int j = nxt[n - 1];
     while (j >= 0) {
-        periods.push_back(n - (j + 1));
+        borders.push_back(j + 1);
         j = nxt[j];
     }
 
-    periods.push_back(n);
-
-    for (int period : periods) {
-        cout << period << " ";
+    for (int i = borders.size() - 1; i >= 0; i--) {
+        cout << borders[i] << " ";
     }
     cout << endl;
 
