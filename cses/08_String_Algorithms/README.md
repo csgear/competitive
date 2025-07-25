@@ -2,15 +2,16 @@
 
 ## 1111 - Longest Palindrome
 
-- **Description**: Find the longest palindromic substring in a given string.
-- **Key Ideas**: Use Manacher's algorithm for linear time palindrome detection, or expand around center for O(n^2) solution. Manacher's algorithm is preferred for efficiency.
+Use Manacher's algorithm for linear time palindrome detection, or expand around center for O(n^2) solution. Manacher's algorithm is preferred for efficiency.
 
-## 1731 - String Matching
+## 1731 - Word Combinations
 
-- **Description**: Given a text and several patterns, count how many times each pattern appears in the text.
-- **Key Ideas**: Use the Aho-Corasick automaton (AC automaton) for multi-pattern matching in linear time. Build a trie of patterns, compute failure links, and process the text in one pass.
+Dynamic programming with trie optimization. Use DP where dp[i] = number of ways to form string[0..i-1]. For efficiency, use trie to find all words starting at each position instead of checking each word separately.
+
+## 1732 - Finding Borders
+
+Use KMP failure function to find the longest border, then follow the failure function chain to find all shorter borders. Each value in the chain represents a border length.
 
 ## 1733 - Finding Periods
 
-- **Description**: Find all periods of a given string. A period is a length p such that the string can be constructed by repeating its prefix of length p.
-- **Key Ideas**: Use the KMP algorithm's "next array" (failure function) to efficiently compute the borders of the string. The borders correspond to possible periods, and you can extract all periods by traversing the failure function.
+Use the KMP algorithm's "next array" (failure function) to efficiently compute the borders of the string. The borders correspond to possible periods, and you can extract all periods by traversing the failure function.
