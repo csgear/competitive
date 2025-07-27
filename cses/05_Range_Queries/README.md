@@ -18,6 +18,21 @@
 
 ## 1650 - Range XOR Queries
 
+- Prefix XOR for O(1) queries.
+
+## 2206 - Pizzeria Queries
+
+Range minimum query problem with distance-based costs. For a person at position k ordering from pizzeria a, the cost is p[a] + |a - k|.
+
+Key insight: Split the absolute value into two cases:
+
+- Left case (a ≤ k): cost = k + (p[a] - a)
+- Right case (a ≥ k): cost = (p[a] + a) - k
+
+Use two segment trees: one storing p[i] - i for left queries, another storing p[i] + i for right queries. For each query, find minimum from both trees and take the smaller result.
+
+Time complexity: O((n + q) log n) for preprocessing and queries.
+
 - Prefix xor array for O(1) queries.
 
 ## 1651 - Range Update Queries

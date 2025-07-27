@@ -26,6 +26,13 @@ For n > 3, append odd numbers first followed by even numbers.
 
 ### 1071 Number Spiral
 
+Mathematical pattern recognition problem. Each position (y,x) belongs to a layer defined by max(x,y). The spiral fills layers alternately:
+
+- Odd layers: fill from bottom-right, going up then left
+- Even layers: fill from top-left, going right then down
+
+For each layer k, numbers range from (k-1)² + 1 to k². Use the layer number and position to calculate the exact value in O(1) time.
+
 ### 1072 Two Knights
 
 This is a counting problem.
@@ -110,7 +117,15 @@ Game theory problem. One possible strategy: player 1 plays '1,2,3,4,...,n', whil
 
 ### 3419 Mex Grid Construction
 
+Greedy construction problem where each cell contains the MEX (minimum excludant) of values appearing to its left in the same row or above in the same column.
+
+Algorithm: For each cell (i,j), collect all values from positions (i,0) to (i,j-1) and (0,j) to (i-1,j), then find the smallest non-negative integer not in this set. Use boolean array for O(1) lookups instead of set for better performance.
+
 ### 3217 Knight Moves Grid
+
+BFS shortest path problem. Calculate minimum number of knight moves to reach each cell from (0,0) on an n×n grid.
+
+Use BFS with 8-directional knight moves: (±2,±1) and (±1,±2). Since all moves have weight 1, BFS guarantees optimal solution. Each cell is visited exactly once, giving O(n²) time complexity.
 
 ### 3311 Grid coloring
 
