@@ -43,6 +43,7 @@ int main() {
     ll sum = 0;
 
     for (int i = 1; i <= 1000000; i++) {
+        // generate all palindromes
         ll x = generate(i, true);
         ll y = generate(i, false);
 
@@ -50,6 +51,7 @@ int main() {
             break;
         }
 
+        // check if palindrome in another base
         if (x <= n && check(x, base)) {
             sum += x;
         }

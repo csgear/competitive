@@ -6,6 +6,7 @@ using ll = long long;
 const ll MOD = 998244353;
 const ll INV2 = 499122177;
 
+// Mathematics solution
 int main() {
     ll n;
     cin >> n;
