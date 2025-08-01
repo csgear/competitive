@@ -2,14 +2,15 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+using ll = long long;
 
 int main() {
     int n, k;
     cin >> n >> k;
-    long long x, a, b, c;
+    ll x, a, b, c;
     cin >> x >> a >> b >> c;
-    long long sum = 0, ans = 0;
-    queue<long long> q;
+    ll sum = 0, ans = 0;
+    queue<ll> q;
     for (int i = 0; i < k; i++) {
         sum += x;
         q.push(x);
