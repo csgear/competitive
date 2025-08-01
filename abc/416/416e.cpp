@@ -9,8 +9,25 @@ const ll INF = 1e18;
 
 int N, M, K, Q, T;
 ll dist[MAXN][MAXN];
-bool has_airport[MAXN];
-int v;
+ll ans = 0;
+
+void addEdge(int x, int y, ll cost) {
+    for (int i = 1; i <= N + 1; i++) {
+        for (int j = 1; j <= N + 1; j++) {
+            ll tmp = min(dist[i][x] + dist[y][j], dist[i][y] + dist[x][j]) + cost;
+            if (tmp != INF && dist[i][j] > tmp) {
+                // we want both i and j are real cities
+                if (i != N + 1 && j != N + 1) {
+                    if (dist[i][j] != INF) {
+                        ans -= dist[i][j];
+                    }
+                    ans += tmp;
+                }
+                dist[i][j] = tmp;
+            }
+        }
+    }
+}
 
 void floyd_warshall() {
     for (int k = 1; k <= N + 1; k++) {
@@ -29,14 +46,12 @@ int main() {
     cin.tie(nullptr);
 
     cin >> N >> M;
-    v = N + 1;
 
     // Initialize distances
     for (int i = 1; i <= N + 1; i++) {
         for (int j = 1; j <= N + 1; j++) {
             dist[i][j] = (i == j) ? 0 : INF;
         }
-        has_airport[i] = false;
     }
 
     // Initial roads (double the cost)
@@ -54,19 +69,19 @@ int main() {
     for (int i = 0; i < K; i++) {
         int d;
         cin >> d;
-        has_airport[d] = true;
+        dist[d][N + 1] = min(dist[d][N + 1], 1LL * T);
+        dist[N + 1][d] = min(dist[N + 1][d], 1LL * T);
     }
 
-    // Connect airports to virtual node (use T instead of T/2)
+    floyd_warshall();
+
     for (int i = 1; i <= N; i++) {
-        if (has_airport[i]) {
-            dist[i][v] = min(dist[i][v], 1LL * T);
-            dist[v][i] = min(dist[v][i], 1LL * T);
+        for (int j = 1; j <= N; j++) {
+            if (dist[i][j] < INF) {
+                ans += dist[i][j];
+            }
         }
     }
-
-    // Initial computation
-    floyd_warshall();
 
     cin >> Q;
     for (int i = 0; i < Q; i++) {
@@ -78,49 +93,14 @@ int main() {
             int x, y, t;
             cin >> x >> y >> t;
             ll cost = 2LL * t;
-
-            if (cost < dist[x][y]) {
-                dist[x][y] = cost;
-                dist[y][x] = cost;
-                // Only update affected pairs
-                for (int u = 1; u <= N + 1; ++u) {
-                    for (int w = 1; w <= N + 1; ++w) {
-                        if (dist[u][x] < INF && dist[y][w] < INF)
-                            dist[u][w] = min(dist[u][w], dist[u][x] + cost + dist[y][w]);
-                        if (dist[u][y] < INF && dist[x][w] < INF)
-                            dist[u][w] = min(dist[u][w], dist[u][y] + cost + dist[x][w]);
-                    }
-                }
-            }
+            addEdge(x, y, cost);
         } else if (type == 2) {
             // Add new airport
             int x;
             cin >> x;
-
-            if (!has_airport[x]) {
-                has_airport[x] = true;
-                dist[x][v] = min(dist[x][v], 1LL * T);
-                dist[v][x] = min(dist[v][x], 1LL * T);
-                // Update all pairs via the virtual node
-                for (int i = 1; i <= N + 1; ++i) {
-                    for (int j = 1; j <= N + 1; ++j) {
-                        if (dist[i][v] < INF && dist[v][j] < INF) {
-                            dist[i][j] = min(dist[i][j], dist[i][v] + dist[v][j]);
-                        }
-                    }
-                }
-            }
+            addEdge(x, N + 1, T);
         } else if (type == 3) {
-            // Calculate sum of all shortest paths (ignore virtual node)
-            ll sum = 0;
-            for (int i = 1; i <= N; i++) {
-                for (int j = 1; j <= N; j++) {
-                    if (dist[i][j] < INF) {
-                        sum += dist[i][j];
-                    }
-                }
-            }
-            cout << (sum / 2) << "\n";
+            cout << (ans / 2) << "\n";
         }
     }
 

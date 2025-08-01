@@ -44,3 +44,18 @@
 
 - **Description**: Find the shortest path from node 1 to all other nodes in a weighted directed graph.
 - **Key Ideas**: Use Dijkstra's algorithm with a priority queue for efficient shortest path computation.
+
+## 1679 - Course Schedule
+
+- **Description**: Find a valid course ordering respecting prerequisites, or report impossibility.
+- **Key Ideas**: Topological sorting using either Kahn's algorithm (BFS with indegree) or DFS with 3-color scheme. Cycle detection indicates impossible scheduling.
+
+## 1680 - Longest Flight Route
+
+- **Description**: Find the longest path from city 1 to city n in a DAG, or report if no path exists.
+- **Key Ideas**: Use topological sort with DP. Only process nodes reachable from source. Track parent pointers for path reconstruction.
+
+## 1196 - Flight Routes
+
+- **Description**: Find the k shortest paths from city 1 to city n.
+- **Key Ideas**: Modified Dijkstra's allowing multiple visits per node (up to k times). Use priority queue and track k shortest distances per node.
