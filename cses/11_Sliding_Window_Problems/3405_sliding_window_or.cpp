@@ -1,62 +1,58 @@
 // https://cses.fi/problemset/task/3405
 
-// TLE
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-
     int n, k;
     cin >> n >> k;
     ll x, a, b, c;
     cin >> x >> a >> b >> c;
 
-    vector<int> bitCount(32, 0);
-    queue<ll> window;
-    ll ans = 0;
+    stack<pair<ll, ll>> in, out;  // {value, running_OR}
 
-    auto getOR = [&]() -> ll {
-        ll orVal = 0;
-        for (int bit = 0; bit < 32; ++bit) {
-            if (bitCount[bit] > 0) {
-                orVal |= (1LL << bit);
-            }
-        }
-        return orVal;
+    auto push_in = [&](ll val) {
+        ll cur_or = in.empty() ? val : (in.top().second | val);
+        in.push({val, cur_or});
     };
 
-    for (int i = 0; i < k; ++i) {
-        window.push(x);
-        for (int bit = 0; bit < 32; ++bit) {
-            if (x & (1LL << bit)) {
-                bitCount[bit]++;
-            }
+    auto move_to_out = [&]() {
+        while (!in.empty()) {
+            ll val = in.top().first;
+            in.pop();
+            ll cur_or = out.empty() ? val : (out.top().second | val);
+            out.push({val, cur_or});
         }
+    };
+
+    auto pop_queue = [&]() {
+        if (out.empty()) {
+            move_to_out();
+        }
+        out.pop();
+    };
+
+    auto query_or = [&]() {
+        ll result = 0;
+        if (!in.empty()) result |= in.top().second;
+        if (!out.empty()) result |= out.top().second;
+        return result;
+    };
+
+    // Build initial window
+    for (int i = 0; i < k; i++) {
+        push_in(x);
         x = (x * a + b) % c;
     }
-    ans = getOR();
 
-    for (int i = k; i < n; ++i) {
-        ll front = window.front();
-        window.pop();
-        for (int bit = 0; bit < 32; ++bit) {
-            if (front & (1LL << bit)) {
-                bitCount[bit]--;
-            }
-        }
+    ll ans = query_or();
 
-        window.push(x);
-
-        for (int bit = 0; bit < 32; ++bit) {
-            if (x & (1LL << bit)) {
-                bitCount[bit]++;
-            }
-        }
-
-        ans ^= getOR();
+    // Slide the window
+    for (int i = k; i < n; i++) {
+        pop_queue();
+        push_in(x);
+        ans ^= query_or();
         x = (x * a + b) % c;
     }
 
