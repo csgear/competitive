@@ -4,7 +4,7 @@
 using namespace std;
 
 string s;
-int n, cnt = 1, ans[500005];
+int n, cnt = 0, ans[500005];
 
 vector<int> adj[500005];
 
@@ -14,7 +14,7 @@ struct Node {
 } tr[500005];
 
 void insert(string p, int id) {
-    int u = 1;
+    int u = 0;
 
     for (int i = 0; i < p.size(); i++) {
         if (tr[u].child[p[i] - 'a'] == 0) tr[u].child[p[i] - 'a'] = ++cnt;
@@ -25,13 +25,13 @@ void insert(string p, int id) {
 
 void buildFailureLinks() {
     queue<int> q;
-    int u = 1;
-    tr[1].fail = 1;
+    int u = 0;
+    tr[0].fail = 0;
     for (int i = 0; i < 26; i++) {
         if (tr[u].child[i])
             tr[tr[u].child[i]].fail = u, q.push(tr[u].child[i]);
         else
-            tr[u].child[i] = 1;
+            tr[u].child[i] = 0;
     }
 
     while (!q.empty()) {
@@ -44,11 +44,11 @@ void buildFailureLinks() {
                 tr[u].child[i] = tr[tr[u].fail].child[i];
         }
     }
-    for (int i = 2; i <= cnt; i++) adj[tr[i].fail].push_back(i);
+    for (int i = 1; i <= cnt; i++) adj[tr[i].fail].push_back(i);
 }
 
 void query(string s) {
-    for (int i = 0, u = 1; i < s.size(); i++) {
+    for (int i = 0, u = 0; i < s.size(); i++) {
         u = tr[u].child[s[i] - 'a'];
         tr[u].occ++;
     }
@@ -80,7 +80,7 @@ int main() {
 
     query(s);
 
-    dfs(1);
+    dfs(0);
 
     for (int i = 0; i < n; i++) cout << (ans[i] ? "YES" : "NO") << '\n';
 }
