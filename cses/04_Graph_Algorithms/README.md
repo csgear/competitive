@@ -1,33 +1,153 @@
-# CSES 04 Graph Algorithms Notes
+# CSES 04 Graph Algorithms
 
-## 1146 - Counting Bits
+This section contains solutions for graph algorithm problems from CSES Problem Set. The problems cover fundamental graph algorithms including traversal, shortest paths, connectivity, and advanced techniques.
 
-- **Description**: (No code provided.)
-- **Key Ideas**: (No solution in file.)
+## Problems Overview
 
-## 1192 - Counting Rooms
+### Basic Graph Traversal
 
-- **Description**: Count the number of connected empty regions (rooms) in a grid.
-- **Key Ideas**: Use DFS or BFS to explore each unvisited empty cell, marking all reachable cells as visited. Each new DFS/BFS call corresponds to a new room.
+| Problem                                          | Algorithm        | Complexity | Key Concepts                         |
+| ------------------------------------------------ | ---------------- | ---------- | ------------------------------------ |
+| [1192 - Counting Rooms](1192_counting_rooms.cpp) | DFS/BFS          | O(nm)      | Connected components, grid traversal |
+| [1193 - Labyrinth](1193_labyrinth.cpp)           | BFS              | O(nm)      | Shortest path, path reconstruction   |
+| [1194 - Monsters](1194_monsters.cpp)             | Multi-source BFS | O(nm)      | Multi-source shortest path           |
 
-## 1193 - Labyrinth
+### Shortest Paths
 
-- **Description**: Find a path from 'A' to 'B' in a grid, if one exists, and output the path.
-- **Key Ideas**: Use BFS to find the shortest path, keeping track of directions to reconstruct the path from 'B' to 'A'.
+| Problem                                                      | Algorithm         | Complexity  | Key Concepts                |
+| ------------------------------------------------------------ | ----------------- | ----------- | --------------------------- |
+| [1667 - Message Route](1667_message_route.cpp)               | BFS               | O(V+E)      | Unweighted shortest path    |
+| [1671 - Shortest Routes I](1671_shortest_routes_1.cpp)       | Dijkstra          | O(E log V)  | Single-source shortest path |
+| [1672 - Shortest Routes II](1672_shortest_routers_2.cpp)     | Floyd-Warshall    | O(V³)       | All-pairs shortest path     |
+| [1195 - Flight Discount](1195_flight_discount.cpp)           | Modified Dijkstra | O(E log V)  | State-space search          |
+| [1196 - Flight Routes](1196_flight_routes.cpp)               | K-shortest paths  | O(kE log V) | Multiple optimal solutions  |
+| [1680 - Longest Flight Route](1680_longest_flight_route.cpp) | Topological DP    | O(V+E)      | Longest path in DAG         |
 
-## 1194 - Monsters
+### Connectivity & Components
 
-- **Description**: Determine if 'A' can escape a grid before being caught by monsters, and output the escape path if possible.
-- **Key Ideas**: Use multi-source BFS: first spread monster times, then try to escape with 'A', ensuring 'A' never enters a cell after or at the same time as a monster.
+| Problem                                                      | Algorithm       | Complexity | Key Concepts             |
+| ------------------------------------------------------------ | --------------- | ---------- | ------------------------ |
+| [1666 - Building Roads](1666_building_roads.cpp)             | DFS             | O(V+E)     | Connected components     |
+| [1668 - Building Teams](1668_building_teams.cpp)             | DFS/BFS         | O(V+E)     | Bipartite graph checking |
+| [1669 - Round Trip](1669_round_trip.cpp)                     | DFS             | O(V+E)     | Cycle detection          |
+| [1676 - Road Construction](1676_road_construction.cpp)       | Union-Find      | O(α(V))    | Dynamic connectivity     |
+| [1682 - Flight Routes Check](1682_flight_routes_check.cpp)   | Kosaraju/Tarjan | O(V+E)     | Strong connectivity      |
+| [1683 - Planets and Kingdoms](1683_planets_and_kingdoms.cpp) | Kosaraju        | O(V+E)     | SCC decomposition        |
 
-## 1666 - Building Roads
+### Advanced Graph Problems
 
-- **Description**: Connect all cities in a country with the minimum number of new roads.
-- **Key Ideas**: Use DFS to find connected components. For each new component, add a road to connect it to the previous one.
+| Problem                                            | Algorithm          | Complexity | Key Concepts             |
+| -------------------------------------------------- | ------------------ | ---------- | ------------------------ |
+| [1197 - Cycle Finding](1197_cycle_finding.cpp)     | Bellman-Ford       | O(VE)      | Negative cycle detection |
+| [1675 - Road Reparation](1675_road_reparation.cpp) | Kruskal's MST      | O(E log E) | Minimum spanning tree    |
+| [1679 - Course Schedule](1679_course_schedule.cpp) | Topological Sort   | O(V+E)     | DAG ordering             |
+| [1681 - Game Routes](1681_game_routes.cpp)         | DP on DAG          | O(V+E)     | Counting paths           |
+| [1696 - School Dance](1696_school_dance.cpp)       | Hungarian/Max Flow | O(V³)      | Bipartite matching       |
 
-## 1667 - Message Route
+## Implementation Notes
 
-- **Description**: Find the shortest path from node 1 to node n in an unweighted graph.
+### Graph Representation
+
+All solutions use **adjacency lists** with custom `Edge` structures:
+
+```cpp
+struct Edge {
+    int to, nxt;
+    ll w;  // weight for weighted graphs
+} edges[MAXM];
+```
+
+### Common Patterns
+
+#### 1. DFS Template
+
+```cpp
+bool visited[MAXN];
+void dfs(int u) {
+    visited[u] = true;
+    for (int e = head[u]; e != 0; e = edges[e].nxt) {
+        int v = edges[e].to;
+        if (!visited[v]) dfs(v);
+    }
+}
+```
+
+#### 2. BFS Template
+
+```cpp
+queue<int> q;
+bool visited[MAXN];
+q.push(start);
+visited[start] = true;
+while (!q.empty()) {
+    int u = q.front(); q.pop();
+    for (int e = head[u]; e != 0; e = edges[e].nxt) {
+        int v = edges[e].to;
+        if (!visited[v]) {
+            visited[v] = true;
+            q.push(v);
+        }
+    }
+}
+```
+
+#### 3. Dijkstra Template
+
+```cpp
+priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
+vector<ll> dist(n + 1, LLONG_MAX);
+dist[start] = 0;
+pq.push({0, start});
+
+while (!pq.empty()) {
+    auto [d, u] = pq.top();
+    pq.pop();
+    if (d > dist[u]) continue;  // Skip outdated entries
+
+    for (int e = head[u]; e != 0; e = edges[e].nxt) {
+        int v = edges[e].to;
+        ll w = edges[e].w;
+        if (dist[v] > dist[u] + w) {
+            dist[v] = dist[u] + w;
+            pq.push({dist[v], v});
+        }
+    }
+}
+```
+
+## Algorithm Categories
+
+### **Traversal & Basic Connectivity**
+
+- Grid-based problems: DFS/BFS on 2D arrays
+- Connected components: Union-Find or DFS
+- Path finding: BFS for unweighted, Dijkstra for weighted
+
+### **Shortest Paths**
+
+- **Single-source**: Dijkstra (non-negative), Bellman-Ford (general)
+- **All-pairs**: Floyd-Warshall for dense graphs
+- **Specialized**: Modified state-space search for constraints
+
+### **Strong Connectivity**
+
+- **Kosaraju's Algorithm**: Two-pass DFS for SCC
+- **Applications**: Checking strong connectivity, SCC decomposition
+
+### **Advanced Techniques**
+
+- **Bipartite Matching**: Hungarian algorithm, max flow reduction
+- **Negative Cycles**: Bellman-Ford with cycle reconstruction
+- **Topological Sorting**: DFS-based ordering for DAGs
+
+## Key Insights
+
+1. **State-space modeling**: Problems like flight discount require tracking additional state
+2. **Path reconstruction**: Maintain parent pointers for path queries
+3. **Multiple solutions**: K-shortest paths, multiple optimal solutions
+4. **Cycle handling**: Different approaches for directed vs undirected graphs
+5. **Optimization**: Choose algorithm based on graph density and constraints
+
 - **Key Ideas**: Use BFS to find the shortest path and reconstruct the path using parent pointers.
 
 ## 1668 - Building Teams

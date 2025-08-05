@@ -1,53 +1,64 @@
-# CSES Problem Set
+# CSES Problem Set Solutions
 
-- [Introductory Problems](01_Introductory_Problems/README.md)
-- [Sorting and Searching](02_Sorting_and_Searching/README.md)
-- [Dynamic Programming](03_Dynamic_Programming/README.md)
-- [Graph Algorithms](04_Graph_Algorithms/README.md)
-- [Range Queries](05_Range_Queries/README.md)
-- [Tree Algorithms](06_Tree_Algorithms/README.md)
-- [Mathematics](07_Mathematics/README.md)
-- [String Algorithms](08_String_Algorithms/README.md)
-- [Geometry](09_Geometry/README.md)
-- [Advanced Techniques](10_Advanced_Techniques/README.md)
-- [Sliding Window Problems](11_Sliding_Window_Problems/README.md)
-- [Interactive Problems](12_Interactive_Problems/README.md)
-- [Bitwise Operations](13_Bitwise_Operations/README.md)
-- [Construction Problems](14_Construction_Problems/README.md)
-- [Advanced Graph Problems](15_Advanced_Graph_Problems/README.md)
-- [Counting Problems](16_Counting_Problems/README.md)
-- [Additional Problems I](17_Additional_Problems_I/README.md)
-- [Additional Problems II](18_Additional_Problems_II/README.md)
+This directory contains solutions to problems from the [CSES Problem Set](https://cses.fi/problemset/), a comprehensive collection of competitive programming problems.
 
-## Others
+## Problem Categories
 
-For each digit position $d$ (units, tens, hundreds, ...), split $n$ into:
+| Category                                                  | Problems Solved | Key Topics                                    |
+| --------------------------------------------------------- | --------------- | --------------------------------------------- |
+| [01 Introductory Problems](01_Introductory_Problems/)     | 20+             | Basic algorithms, recursion, bit manipulation |
+| [02 Sorting and Searching](02_Sorting_and_Searching/)     | -               | Binary search, two pointers, sliding window   |
+| [03 Dynamic Programming](03_Dynamic_Programming/)         | -               | DP states, optimization, classical problems   |
+| [04 Graph Algorithms](04_Graph_Algorithms/)               | 25+             | BFS/DFS, shortest paths, MST, flows, matching |
+| [05 Range Queries](05_Range_Queries/)                     | 5+              | Segment trees, BIT, lazy propagation          |
+| [06 Tree Algorithms](06_Tree_Algorithms/)                 | -               | Tree DP, LCA, heavy-light decomposition       |
+| [07 Mathematics](07_Mathematics/)                         | -               | Number theory, combinatorics, linear algebra  |
+| [08 String Algorithms](08_String_Algorithms/)             | -               | String matching, hashing, suffix structures   |
+| [09 Geometry](09_Geometry/)                               | -               | Computational geometry, convex hull           |
+| [10 Advanced Techniques](10_Advanced_Techniques/)         | -               | Advanced data structures and algorithms       |
+| [11 Sliding Window Problems](11_Sliding_Window_Problems/) | -               | Two pointers, sliding window technique        |
+| [12 Interactive Problems](12_Interactive_Problems/)       | -               | Interactive problem solving                   |
+| [13 Bitwise Operations](13_Bitwise_Operations/)           | -               | Bit manipulation, subset enumeration          |
+| [14 Construction Problems](14_Construction_Problems/)     | -               | Constructive algorithms                       |
+| [15 Advanced Graph Problems](15_Advanced_Graph_Problems/) | -               | Advanced graph theory                         |
+| [16 Counting Problems](16_Counting_Problems/)             | -               | Inclusion-exclusion, generating functions     |
+| [17 Additional Problems I](17_Additional_Problems_I/)     | -               | Mixed advanced topics                         |
+| [18 Additional Problems II](18_Additional_Problems_II/)   | -               | Mixed advanced topics                         |
 
--
-- **higher**: digits to the left of $d$
-- **current**: digit at position $d$
-- **lower**: digits to the right of $d$
+## Implementation Notes
 
-The number of times '5' appears in that position is:
+### Coding Style
 
-$$
-\text{count} = \text{higher} \times \text{factor} +
-\begin{cases}
-    \text{lower} + 1, & \text{if current digit} = 5 \\
-    \text{factor},    & \text{if current digit} > 5 \\
-    0,                & \text{if current digit} < 5
-\end{cases}
-$$
+- **Language**: C++ (C++17 standard)
+- **Templates**: Consistent use of competitive programming templates
+- **Graph Representation**: Adjacency lists using custom Edge structures
+- **Data Structures**: STL containers with occasional custom implementations
 
-where
+### Key Algorithms Implemented
 
-$$
-\text{factor} = 10^d
-$$
+- **Graph Algorithms**: Dijkstra, Floyd-Warshall, Bellman-Ford, DFS/BFS variants
+- **Tree Algorithms**: Heavy-light decomposition, segment trees with lazy propagation
+- **Flow Networks**: Maximum flow, minimum cost flow, bipartite matching
+- **Advanced Structures**: Binary Indexed Trees (BIT), dynamic segment trees
 
-### 1073 Fibonacci Numbers
+## Progress Summary
 
-## Fast Doubling Method (Recommended) or or fast matrix exponentiation to compute fibonacci number of n
+- **Total Problems**: 300 in CSES Problem Set
+- **Problems Solved**: 50+ across multiple categories
+- **Focus Areas**: Graph algorithms, data structures, dynamic programming
+
+## Usage
+
+Each directory contains:
+
+- Solution files (`*.cpp`)
+- Category-specific README with problem explanations
+- Implementation notes and complexity analysis
+
+## References
+
+- [CSES Problem Set](https://cses.fi/problemset/)
+- [Competitive Programming Handbook](https://cses.fi/book/book.pdf) by Antti Laaksonen
 
 The fast doubling method uses the following recurrence relations:
 For even n (n = 2k):
