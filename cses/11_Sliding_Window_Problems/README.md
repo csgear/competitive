@@ -24,6 +24,8 @@
 
 - **Description**: Find minimum value in each sliding window of size k.
 - **Key Ideas**: Use monotonic deque to efficiently track minimum. Store {value, index} pairs, maintain increasing order by removing larger elements from back, remove elements outside window from front.
+  <<<<<<< HEAD
+  =======
 
 ## 3222 - Sliding Window Distinct Values
 
@@ -74,3 +76,4 @@
 - **Frequency Maps**: Counting distinct elements or modes (3222, 3224)
 - **Incremental Updates**: XOR, OR with efficient add/remove (3426, 3405)
 - **Missing Value Tracking**: MEX computation with sets (3219)
+  > > > > > > > main
