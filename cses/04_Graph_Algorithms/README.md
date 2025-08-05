@@ -59,3 +59,57 @@
 
 - **Description**: Find the k shortest paths from city 1 to city n.
 - **Key Ideas**: Modified Dijkstra's allowing multiple visits per node (up to k times). Use priority queue and track k shortest distances per node.
+
+## 1675 - Road Reparation
+
+- **Description**: Find the minimum cost to repair roads to connect all cities, or report if impossible.
+- **Key Ideas**: Minimum Spanning Tree (MST) using Kruskal's algorithm with Union-Find. Sort edges by cost, add minimum cost edges that don't create cycles. Check if all cities are connected.
+
+## 1676 - Road Construction
+
+- **Description**: Process road construction queries, outputting the number of connected components and size of the largest component after each road.
+- **Key Ideas**: Dynamic connectivity using Union-Find with union by size. Track component count and maximum component size. Each merge operation updates both metrics efficiently.
+
+## 1682 - Flight Routes Check
+
+- **Description**: Check if all cities are reachable from each other in a directed graph. If not, output a pair of cities that can't reach each other.
+- **Key Ideas**: Strong connectivity check using Kosaraju's algorithm for strongly connected components (SCCs). If more than 1 SCC exists, find two cities in different SCCs.
+
+## 1683 - Planets and Kingdoms
+
+- **Description**: Find all strongly connected components in a directed graph and assign component IDs to each node.
+- **Key Ideas**: Kosaraju's algorithm for SCC decomposition. Two-pass DFS: first on original graph for finishing times, second on reversed graph in reverse order to identify components. Assign unique IDs to each SCC.
+
+---
+
+## Algorithm Categories Summary
+
+### **Graph Traversal & Basic Connectivity**
+
+- **1192 - Counting Rooms**: DFS/BFS on grid
+- **1193 - Labyrinth**: BFS pathfinding
+- **1194 - Monsters**: Multi-source BFS
+- **1667 - Message Route**: BFS shortest path (unweighted)
+
+### **Union-Find & Dynamic Connectivity**
+
+- **1675 - Road Reparation**: Kruskal's MST with Union-Find
+- **1676 - Road Construction**: Dynamic connectivity tracking
+- **1666 - Building Roads**: Connected components with Union-Find
+
+### **Strongly Connected Components (SCC)**
+
+- **1682 - Flight Routes Check**: SCC existence check with Kosaraju's
+- **1683 - Planets and Kingdoms**: Complete SCC decomposition
+
+### **Graph Properties & Validation**
+
+- **1668 - Building Teams**: Bipartite graph checking
+- **1669 - Round Trip**: Cycle detection in undirected graphs
+- **1679 - Course Schedule**: Topological sorting & cycle detection
+
+### **Shortest Paths**
+
+- **1671 - Shortest Routes I**: Dijkstra's algorithm
+- **1196 - Flight Routes**: k-shortest paths variant
+- **1680 - Longest Flight Route**: Longest path in DAG with topological sort
