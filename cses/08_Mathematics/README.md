@@ -57,6 +57,17 @@
 - **Algorithm**: Iterative computation using the recurrence relation.
 - **Complexity**: O(n) per query.
 
+## 1729 - Stick Game
+
+- **Description**: Two-player game where players alternate removing sticks from a heap. Determine for each heap size 1 to n whether the first player has a winning or losing position.
+- **Key Ideas**: Use Grundy numbers (Sprague-Grundy theorem). A position has Grundy number 0 if and only if it's a losing position.
+- **Algorithm**:
+  - Grundy(i) = MEX{Grundy(i-p) | p ∈ allowed_moves, i ≥ p}
+  - MEX (minimum excludant) = smallest non-negative integer not in the set
+  - Position is losing ⟺ Grundy number = 0
+- **Game Theory**: Classic impartial game demonstrating the Sprague-Grundy theorem for combinatorial game theory.
+- **Complexity**: O(n × k) where k is number of allowed moves.
+
 ## 1722 - Fibonacci Numbers
 
 - **Description**: Compute the nth Fibonacci number modulo 1e9+7.
