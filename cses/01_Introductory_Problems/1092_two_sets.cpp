@@ -1,28 +1,29 @@
 // https://cses.fi/problemset/task/1092
 // Two Sets
 
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
+
+using ll = long long;
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    long long n;
+    ll n;
     cin >> n;
 
-    long long total_sum = n * (n + 1) / 2;
+    ll total_sum = n * (n + 1) / 2;
 
     if (total_sum % 2 != 0) {
         cout << "NO\n";
         return 0;
     }
 
-    long long target = total_sum / 2;
+    ll target = total_sum / 2;
 
     vector<int> set1, set2;
-    long long current_sum = 0;
+    ll current_sum = 0;
 
     // greedy approach
     for (int i = n; i >= 1; i--) {
