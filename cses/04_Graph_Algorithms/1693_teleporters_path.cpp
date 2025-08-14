@@ -1,5 +1,7 @@
 // https://cses.fi/problemset/task/1693
 
+// Eulerian path
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -55,7 +57,7 @@ int main() {
     while (!st.empty()) {
         int u = st.top();
 
-        // Find next unused edge
+        // Find next unused edge, avoid checking already used edges
         while (cur[u] != 0 && edges[cur[u]].used) {
             cur[u] = edges[cur[u]].next;
         }
