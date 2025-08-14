@@ -1,6 +1,11 @@
 # CSES 04 Graph Algorithms
 
-This section contains solutions for graph algorithm problems from CSES Problem Set. The problems cover fundamental graph algorithms including traversal, shortest paths, connectivity, and advanced techniques.
+This section contains solutions for graph algorithm problems from CSES Problem Set. The problems cover fundamental graph algorithms including traversal, shortest paths, co### Advanced Techniques
+
+- **Bipartite Matching**: Hungarian algorithm, max flow reduction
+- **Negative Cycles**: Bellman-Ford with cycle reconstruction
+- **Maximum Flow**: Dinic's algorithm for efficient flow computation
+- **Edge-Disjoint Paths**: Path reconstruction from residual graphstivity, and advanced techniques.
 
 ## Problems Overview
 
@@ -55,9 +60,12 @@ This section contains solutions for graph algorithm problems from CSES Problem S
 | [1675 - Road Reparation](1675_road_reparation.cpp)       | Kruskal's MST      | O(E log E) | Minimum spanning tree         |
 | [1684 - Giant Pizza](1684_giant_pizza.cpp)               | 2-SAT              | O(V+E)     | Boolean satisfiability        |
 | [1686 - Coin Collector](1686_coin_collector.cpp)         | SCC + DP           | O(V+E)     | SCC compression, longest path |
+| [1689 - Knight's Tour](1689_knights_tour.cpp)            | Backtracking       | O(8^64)    | Warnsdorff's heuristic        |
 | [1691 - Mail Delivery](1691_mail_delivery.cpp)           | Eulerian Circuit   | O(V+E)     | Eulerian tour, Hierholzer's   |
 | [1692 - De Bruijn Sequence](1692_de_bruijn_sequence.cpp) | Eulerian Path      | O(k^n)     | De Bruijn graph construction  |
+| [1694 - Download Speed](1694_download_speed_dinic.cpp)   | Dinic's Algorithm  | O(V²E)     | Maximum flow, blocking flows  |
 | [1696 - School Dance](1696_school_dance.cpp)             | Hungarian/Max Flow | O(V³)      | Bipartite matching            |
+| [1711 - Distinct Routes](1711_distinct_routes.cpp)       | Max Flow + Paths   | O(V²E)     | Edge-disjoint path finding    |
 
 ## Implementation Notes
 
@@ -367,6 +375,87 @@ for (int i = 1; i <= n; i++) {
 ### **Advanced Graph Algorithms**
 
 - **1681 - Game Routes**: DP on DAG for path counting
+- **1689 - Knight's Tour**: Backtracking with Warnsdorff's heuristic
 - **1691 - Mail Delivery**: Eulerian circuit with Hierholzer's algorithm
 - **1692 - De Bruijn Sequence**: Eulerian path in De Bruijn graphs
 - **1696 - School Dance**: Bipartite matching with max flow
+
+### **Maximum Flow & Network Flows**
+
+- **1694 - Download Speed**: Dinic's algorithm for maximum flow
+- **1711 - Distinct Routes**: Edge-disjoint path reconstruction from max flow
+
+## Additional Implementation Details
+
+### 1689 - Knight's Tour
+
+- **Description**: Find a sequence of knight moves visiting each square of a chessboard exactly once.
+- **Algorithm**: Backtracking with Warnsdorff's heuristic
+- **Key Ideas**:
+  - Use Warnsdorff's rule: always move to square with fewest onward moves
+  - This heuristic dramatically reduces search space and avoids dead ends
+  - Backtrack when no valid moves available
+
+```cpp
+// Warnsdorff's heuristic: count accessibility
+int countMoves(int x, int y) {
+    int count = 0;
+    for (int i = 0; i < 8; i++) {
+        int nx = x + dx[i], ny = y + dy[i];
+        if (isValid(nx, ny)) count++;
+    }
+    return count;
+}
+```
+
+### 1694 - Download Speed
+
+- **Description**: Find maximum flow from source to sink in a flow network.
+- **Algorithm**: Dinic's algorithm with blocking flows
+- **Key Ideas**:
+  - Build level graph using BFS
+  - Find blocking flow using DFS
+  - O(V²E) complexity, efficient for competitive programming
+  - Use forward-star graph representation with XOR trick for reverse edges
+
+```cpp
+// Dinic's algorithm structure
+int dinic() {
+    int max_flow = 0;
+    while (bfs()) {  // Build level graph
+        memcpy(cur, head, sizeof(head));
+        max_flow += dfs(1, INT_MAX);  // Find blocking flow
+    }
+    return max_flow;
+}
+```
+
+### 1711 - Distinct Routes
+
+- **Description**: Find k edge-disjoint paths from source to sink and output all paths.
+- **Algorithm**: Maximum flow + path reconstruction
+- **Key Ideas**:
+  - First run max flow to determine number of paths
+  - Track edge IDs to distinguish original from reverse edges
+  - Reconstruct paths by following edges with flow (capacity = 0)
+  - Mark used edges to ensure edge-disjoint property
+
+```cpp
+// Path reconstruction from residual graph
+vector<int> find_path() {
+    vector<int> path = {1};
+    int x = 1;
+    while (x != n) {
+        for (int i = head[x]; i; i = e[i].nxt) {
+            // Look for used edges: cap=0, valid ID, not visited
+            if (e[i].cap == 0 && e[i].id > 0 && !vis[e[i].id]) {
+                path.push_back(e[i].v);
+                vis[e[i].id] = true;
+                x = e[i].v;
+                break;
+            }
+        }
+    }
+    return path;
+}
+```
