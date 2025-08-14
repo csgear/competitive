@@ -50,34 +50,24 @@ int main() {
     ll n;
     cin >> n;
 
-    // Transition matrix for the recurrence relation:
-    // f(n) = f(n-1) + f(n-2) + f(n-3) + f(n-4) + f(n-5) + f(n-6)
-    // State vector: [f(n-5), f(n-4), f(n-3), f(n-2), f(n-1), f(n)]
-    vector<vector<ll>> transition(6, vector<ll>(6, 0));
+    vector<vector<ll>> matrix(6, vector<ll>(6, 0));
 
     // Shift previous values
     for (int i = 0; i < 5; i++) {
-        transition[i][i + 1] = 1;
+        matrix[i][i + 1] = 1;
     }
 
     // f(n) = sum of all previous 6 values
     for (int i = 0; i < 6; i++) {
-        transition[5][i] = 1;
+        matrix[5][i] = 1;
     }
 
-    if (n <= 6) {
-        // Base cases: f(0)=1, f(1)=1, f(2)=2, f(3)=4, f(4)=8, f(5)=16, f(6)=32
-        ll ans = 1;
-        for (int i = 1; i <= n; i++) {
-            ans = (ans * 2) % MOD;
-        }
-        cout << ans << '\n';
-    } else {
-        // Use matrix exponentiation for n > 6
-        vector<vector<ll>> result = matrix_power(transition, n - 6);
+    vector<ll> initial = {1, 2, 4, 8, 16, 32};
 
-        // Initial state: [f(0), f(1), f(2), f(3), f(4), f(5)] = [1, 1, 2, 4, 8, 16]
-        vector<ll> initial = {1, 1, 2, 4, 8, 16};
+    if (n <= 6) {
+        cout << initial[n - 1] << '\n';
+    } else {
+        vector<vector<ll>> result = matrix_power(matrix, n - 6);
 
         ll ans = 0;
         for (int i = 0; i < 6; i++) {

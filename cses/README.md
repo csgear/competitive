@@ -6,24 +6,24 @@ This directory contains solutions to problems from the [CSES Problem Set](https:
 
 | Category                                                  | Problems Solved | Key Topics                                    |
 | --------------------------------------------------------- | --------------- | --------------------------------------------- |
-| [01 Introductory Problems](01_Introductory_Problems/)     | 20+             | Basic algorithms, recursion, bit manipulation |
-| [02 Sorting and Searching](02_Sorting_and_Searching/)     | -               | Binary search, two pointers, sliding window   |
-| [03 Dynamic Programming](03_Dynamic_Programming/)         | -               | DP states, optimization, classical problems   |
-| [04 Graph Algorithms](04_Graph_Algorithms/)               | 25+             | BFS/DFS, shortest paths, MST, flows, matching |
-| [05 Range Queries](05_Range_Queries/)                     | 5+              | Segment trees, BIT, lazy propagation          |
-| [06 Tree Algorithms](06_Tree_Algorithms/)                 | -               | Tree DP, LCA, heavy-light decomposition       |
-| [07 Mathematics](07_Mathematics/)                         | -               | Number theory, combinatorics, linear algebra  |
-| [08 String Algorithms](08_String_Algorithms/)             | -               | String matching, hashing, suffix structures   |
-| [09 Geometry](09_Geometry/)                               | -               | Computational geometry, convex hull           |
-| [10 Advanced Techniques](10_Advanced_Techniques/)         | -               | Advanced data structures and algorithms       |
-| [11 Sliding Window Problems](11_Sliding_Window_Problems/) | -               | Two pointers, sliding window technique        |
-| [12 Interactive Problems](12_Interactive_Problems/)       | -               | Interactive problem solving                   |
-| [13 Bitwise Operations](13_Bitwise_Operations/)           | -               | Bit manipulation, subset enumeration          |
-| [14 Construction Problems](14_Construction_Problems/)     | -               | Constructive algorithms                       |
-| [15 Advanced Graph Problems](15_Advanced_Graph_Problems/) | -               | Advanced graph theory                         |
-| [16 Counting Problems](16_Counting_Problems/)             | -               | Inclusion-exclusion, generating functions     |
-| [17 Additional Problems I](17_Additional_Problems_I/)     | -               | Mixed advanced topics                         |
-| [18 Additional Problems II](18_Additional_Problems_II/)   | -               | Mixed advanced topics                         |
+| [01 Introductory Problems](01_Introductory_Problems/)     | 26              | Basic algorithms, recursion, bit manipulation |
+| [02 Sorting and Searching](02_Sorting_and_Searching/)     | 35              | Binary search, two pointers, sliding window   |
+| [03 Dynamic Programming](03_Dynamic_Programming/)         | 25              | DP states, optimization, classical problems   |
+| [04 Graph Algorithms](04_Graph_Algorithms/)               | 42              | BFS/DFS, shortest paths, MST, flows, matching |
+| [05 Range Queries](05_Range_Queries/)                     | 22              | Segment trees, BIT, lazy propagation          |
+| [06 Tree Algorithms](06_Tree_Algorithms/)                 | 5               | Tree DP, LCA, heavy-light decomposition       |
+| [07 String Algorithms](07_String_Algorithms/)             | 12              | String matching, hashing, suffix structures   |
+| [08 Mathematics](08_Mathematics/)                         | 22              | Number theory, combinatorics, linear algebra  |
+| [09 Geometry](09_Geometry/)                               | 3               | Computational geometry, convex hull           |
+| [10 Advanced Techniques](10_Advanced_Techniques/)         | 3               | Advanced data structures and algorithms       |
+| [11 Sliding Window Problems](11_Sliding_Window_Problems/) | 9               | Two pointers, sliding window technique        |
+| [12 Interactive Problems](12_Interactive_Problems/)       | 0               | Interactive problem solving                   |
+| [13 Bitwise Operations](13_Bitwise_Operations/)           | 2               | Bit manipulation, subset enumeration          |
+| [14 Construction Problems](14_Construction_Problems/)     | 1               | Constructive algorithms                       |
+| [15 Advanced Graph Problems](15_Advanced_Graph_Problems/) | 1               | Advanced graph theory                         |
+| [16 Counting Problems](16_Counting_Problems/)             | 2               | Inclusion-exclusion, generating functions     |
+| [17 Additional Problems I](17_Additional_Problems_I/)     | 2               | Mixed advanced topics                         |
+| [18 Additional Problems II](18_Additional_Problems_II/)   | 1               | Mixed advanced topics                         |
 
 ## Implementation Notes
 
@@ -36,16 +36,21 @@ This directory contains solutions to problems from the [CSES Problem Set](https:
 
 ### Key Algorithms Implemented
 
-- **Graph Algorithms**: Dijkstra, Floyd-Warshall, Bellman-Ford, DFS/BFS variants
-- **Tree Algorithms**: Heavy-light decomposition, segment trees with lazy propagation
-- **Flow Networks**: Maximum flow, minimum cost flow, bipartite matching
-- **Advanced Structures**: Binary Indexed Trees (BIT), dynamic segment trees
+- **Graph Algorithms**: Dijkstra, Floyd-Warshall, Bellman-Ford, DFS/BFS variants, Dinic's max flow
+- **Dynamic Programming**: Classical DP, digit DP, bitmask DP, tree DP
+- **Data Structures**: Segment trees, Binary Indexed Trees (BIT), dynamic segment trees
+- **Flow Networks**: Maximum flow, minimum cost flow, bipartite matching, edge-disjoint paths
+- **String Algorithms**: KMP, Z-algorithm, hashing, suffix structures
+- **Mathematics**: Number theory, combinatorics, matrix exponentiation, linear algebra
+- **Tree Algorithms**: Heavy-light decomposition, LCA, tree distances
+- **Geometry**: Point location, line intersection, convex operations
 
 ## Progress Summary
 
 - **Total Problems**: 300 in CSES Problem Set
-- **Problems Solved**: 50+ across multiple categories
-- **Focus Areas**: Graph algorithms, data structures, dynamic programming
+- **Problems Solved**: 213 across multiple categories
+- **Focus Areas**: Graph algorithms, data structures, dynamic programming, mathematics
+- **Completion Rate**: 71% of the problem set
 
 ## Usage
 
