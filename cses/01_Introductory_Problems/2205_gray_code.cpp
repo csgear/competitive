@@ -3,11 +3,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Gray code formula approach: G(n) = n XOR (n >> 1)
+// This formula directly converts binary number to Gray code
+// Gray code property: adjacent codes differ by exactly one bit
 vector<string> gray1(int n) {
-    int total = 1 << n;
+    int total = 1 << n;  // 2^n total Gray codes
     vector<string> result;
+
     for (int i = 0; i < total; ++i) {
+        // This gives the i-th Gray code from binary i
         int gray = i ^ (i >> 1);
+
+        // Convert Gray code number to binary string
         string s;
         for (int j = n - 1; j >= 0; --j) {
             s += ((gray >> j) & 1) ? '1' : '0';

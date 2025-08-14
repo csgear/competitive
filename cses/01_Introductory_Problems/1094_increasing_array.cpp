@@ -1,18 +1,19 @@
 // https://cses.fi/problemset/task/1094
 
 #include <bits/stdc++.h>
-
 using namespace std;
 
+using ll = long long;
+
 int main() {
-    long long n;
+    ll n;
     cin >> n;
-    long long ans = 0;
-    int prev = 0;
+    ll ans = 0;
+    ll prev = 0;
     for (int i = 0; i < n; i++) {
-        int x;
+        ll x;
         cin >> x;
-        if (x < prev && prev != 0) {
+        if (x < prev) {
             ans += prev - x;
         } else {
             prev = x;

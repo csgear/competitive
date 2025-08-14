@@ -19,8 +19,15 @@ void dfs(int y, int x, int step) {
     bool up = vis[y - 1][x];
     bool left = vis[y][x - 1];
     bool right = vis[y][x + 1];
-    if (down && up && !left && !right) return;
-    if (!down && !up && left && right) return;
+
+    // Pruning optimization: if we create a "corridor" that splits the grid,
+    // we'll never be able to visit all cells. Two cases:
+    // 1. Vertical corridor: both up and down are blocked, but left and right are free
+    //    This creates a vertical barrier we can't cross
+    // 2. Horizontal corridor: both left and right are blocked, but up and down are free
+    //    This creates a horizontal barrier we can't cross
+    if (down && up && !left && !right) return;  // Vertical corridor
+    if (!down && !up && left && right) return;  // Horizontal corridor
 
     char d = s[step - 1];
     vis[y][x] = 1;

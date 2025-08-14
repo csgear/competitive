@@ -3,11 +3,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+using ll = long long;
+
 int main() {
-    int n;
+    ll n;
     cin >> n;
-    int zeros = 0;
-    for (long long i = 5; n / i > 0; i *= 5) {
+    ll zeros = 0;
+
+    // n/5: Numbers divisible by 5 (contribute one factor of 5 each)
+    // n/25: Numbers divisible by 25 (contribute an additional factor of 5)
+    for (ll i = 5; n / i > 0; i *= 5) {
         zeros += n / i;
     }
     cout << zeros << '\n';
