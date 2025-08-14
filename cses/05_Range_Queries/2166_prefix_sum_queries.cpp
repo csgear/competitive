@@ -5,20 +5,27 @@ using namespace std;
 
 using ll = long long;
 
+struct TreeNode {
+    ll sum;  // Range sum
+    ll pre;  // Maximum prefix sum
+
+    TreeNode() : sum(0), pre(0) {}
+    TreeNode(ll s, ll p) : sum(s), pre(p) {}
+};
+
 const int N = 2e5 + 5;
 ll a[N];
-ll sum_t[N << 2];
-ll pre_t[N << 2];
+TreeNode tree[N << 2];
 
 void push_up(int p) {
-    sum_t[p] = sum_t[p << 1] + sum_t[p << 1 | 1];
-    pre_t[p] = max(pre_t[p << 1], sum_t[p << 1] + pre_t[p << 1 | 1]);
+    tree[p].sum = tree[p << 1].sum + tree[p << 1 | 1].sum;
+    tree[p].pre = max(tree[p << 1].pre, tree[p << 1].sum + tree[p << 1 | 1].pre);
 }
 
 void build(int p, int pl, int pr) {
     if (pl == pr) {
-        sum_t[p] = a[pl];
-        pre_t[p] = max(a[pl], 0LL);
+        tree[p].sum = a[pl];
+        tree[p].pre = max(a[pl], 0LL);
         return;
     }
     int mid = (pl + pr) >> 1;
@@ -29,8 +36,8 @@ void build(int p, int pl, int pr) {
 
 void point_set(int pos, ll val, int p, int pl, int pr) {
     if (pl == pr) {
-        sum_t[p] = val;
-        pre_t[p] = max(val, 0LL);
+        tree[p].sum = val;
+        tree[p].pre = max(val, 0LL);
         return;
     }
     int mid = (pl + pr) >> 1;
@@ -44,18 +51,18 @@ void point_set(int pos, ll val, int p, int pl, int pr) {
 // L, R: The query range (the interval you want to get the answer for).
 // p: The current node in the segment tree.
 // pl, pr: The range that the current node p covers.
-pair<ll, ll> query(int L, int R, int p, int pl, int pr) {
+TreeNode query(int L, int R, int p, int pl, int pr) {
     if (L <= pl && pr <= R) {
-        return {sum_t[p], pre_t[p]};
+        return tree[p];
     }
     int mid = (pl + pr) >> 1;
     if (R <= mid) return query(L, R, p << 1, pl, mid);
     if (L > mid) return query(L, R, p << 1 | 1, mid + 1, pr);
     auto left = query(L, mid, p << 1, pl, mid);
     auto right = query(mid + 1, R, p << 1 | 1, mid + 1, pr);
-    ll total_sum = left.first + right.first;
-    ll max_pre = max(left.second, left.first + right.second);
-    return {total_sum, max_pre};
+    ll total_sum = left.sum + right.sum;
+    ll max_pre = max(left.pre, left.sum + right.pre);
+    return TreeNode(total_sum, max_pre);
 }
 
 int main() {
@@ -78,7 +85,7 @@ int main() {
         } else {
             int l, r;
             cin >> l >> r;
-            cout << query(l, r, 1, 1, n).second << '\n';
+            cout << query(l, r, 1, 1, n).pre << '\n';
         }
     }
     return 0;
