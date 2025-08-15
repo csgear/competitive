@@ -34,7 +34,7 @@ void build(int p, int pl, int pr) {
     push_up(p);
 }
 
-void point_set(int pos, ll val, int p, int pl, int pr) {
+void point_set(int p, int pl, int pr, int pos, ll val) {
     if (pl == pr) {
         tree[p].sum = val;
         tree[p].pre = max(val, 0LL);
@@ -42,9 +42,9 @@ void point_set(int pos, ll val, int p, int pl, int pr) {
     }
     int mid = (pl + pr) >> 1;
     if (pos <= mid)
-        point_set(pos, val, p << 1, pl, mid);
+        point_set(p << 1, pl, mid, pos, val);
     else
-        point_set(pos, val, p << 1 | 1, mid + 1, pr);
+        point_set(p << 1 | 1, mid + 1, pr, pos, val);
     push_up(p);
 }
 
@@ -81,7 +81,7 @@ int main() {
             int k;
             ll u;
             cin >> k >> u;
-            point_set(k, u, 1, 1, n);
+            point_set(1, 1, n, k, u);
         } else {
             int l, r;
             cin >> l >> r;

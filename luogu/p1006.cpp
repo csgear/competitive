@@ -10,6 +10,9 @@ int f[MAXN][MAXN][MAXN][MAXN], a[MAXN][MAXN];
 int m, n;
 
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int m, n;
     cin >> m >> n;
     for (int i = 1; i <= m; i++) {
