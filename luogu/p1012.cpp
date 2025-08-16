@@ -17,7 +17,6 @@ int main() {
         a.push_back(s);
     }
 
-    // Sort using custom comparator
     sort(a.begin(), a.end(), compare);
 
     for (string s : a) {

@@ -3,7 +3,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fastio ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
 constexpr int N = 25;
 int vis[N][N] = {};
 long long dp[N][N];
@@ -12,7 +11,9 @@ int dir[9][2] = {0, 0, -1, 2, 2, -1, 1, -2, -2, 1, -2, -1, -1, -2, 2, 1, 1, 2};
 
 int n, m, x, y;
 int main() {
-    fastio;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     cin >> n >> m >> x >> y;
 
     for (int i = 0; i < 9; i++) {

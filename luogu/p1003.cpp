@@ -3,13 +3,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define fastio ios::sync_with_stdio(false), cin.tie(0), cout.tie(0)
-
 const int MAXN = 10000 + 5;
 int a[MAXN], b[MAXN], g[MAXN], k[MAXN];
 
 int main() {
-    fastio;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
     int n, x, y;
 

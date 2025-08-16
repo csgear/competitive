@@ -8,12 +8,12 @@ using ll = long long;
 const int N = 2e5 + 5;
 ll a[N];
 ll tree[N << 2];
-ll tag[N << 2];
+ll lazy[N << 2];
 
 void push_up(ll p) { tree[p] = tree[p << 1] + tree[p << 1 | 1]; }
 
 void build(ll p, ll pl, ll pr) {
-    tag[p] = 0;
+    lazy[p] = 0;
     if (pl == pr) {
         tree[p] = a[pl];
         return;
@@ -24,23 +24,23 @@ void build(ll p, ll pl, ll pr) {
     push_up(p);
 }
 
-void add_tag(ll p, ll pl, ll pr, ll d) {
-    tag[p] += d;
+void apply_lazy(ll p, ll pl, ll pr, ll d) {
+    lazy[p] += d;
     tree[p] += d * (pr - pl + 1);
 }
 
 void push_down(ll p, ll pl, ll pr) {
-    if (tag[p]) {
+    if (lazy[p]) {
         ll mid = (pl + pr) >> 1;
-        add_tag(p << 1, pl, mid, tag[p]);
-        add_tag(p << 1 | 1, mid + 1, pr, tag[p]);
-        tag[p] = 0;
+        apply_lazy(p << 1, pl, mid, lazy[p]);
+        apply_lazy(p << 1 | 1, mid + 1, pr, lazy[p]);
+        lazy[p] = 0;
     }
 }
 
 void update(ll L, ll R, ll p, ll pl, ll pr, ll d) {
     if (L <= pl && pr <= R) {
-        add_tag(p, pl, pr, d);
+        apply_lazy(p, pl, pr, d);
         return;
     }
     push_down(p, pl, pr);
