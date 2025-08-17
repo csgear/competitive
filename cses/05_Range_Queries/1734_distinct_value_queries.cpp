@@ -41,19 +41,19 @@ int main() {
         return a.r < b.r;
     });
 
-    int distinct = 0;
-    vector<int> occurrences(n);
-    vector<int> answer(q);
+    int res = 0;
+    vector<int> cnt(n);
+    vector<int> ans(q);
 
     auto add = [&](int i) {
-        if (occurrences[v[i]]++ == 0) {
-            distinct++;
+        if (cnt[v[i]]++ == 0) {
+            res++;
         }
     };
 
     auto remove = [&](int i) {
-        if (--occurrences[v[i]] == 0) {
-            distinct--;
+        if (--cnt[v[i]] == 0) {
+            res--;
         }
     };
 
@@ -67,10 +67,10 @@ int main() {
         // shrink
         while (al < l) remove(al++);
         while (ar > r) remove(ar--);
-        answer[i] = distinct;
+        ans[i] = res;
     }
 
-    for (int a : answer) {
+    for (int a : ans) {
         cout << a << endl;
     }
     return 0;
