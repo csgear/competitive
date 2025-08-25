@@ -1,4 +1,6 @@
-// Don't Be Last!【USACO 2017 January Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=687
+// USACO 2017 January Contest, Bronze
+// Problem 1. Don't Be Last!
 
 #include <bits/stdc++.h>
 using namespace std;

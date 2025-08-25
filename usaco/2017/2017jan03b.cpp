@@ -1,4 +1,6 @@
-// Cow Tipping【USACO 2017 January Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=689
+// USACO 2017 January Contest, Bronze
+// Problem 3. Cow Tipping
 
 #include <bits/stdc++.h>
 using namespace std;
