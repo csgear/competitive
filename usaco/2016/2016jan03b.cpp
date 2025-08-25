@@ -1,4 +1,6 @@
-// Mowing the Field【USACO 2016 January Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=593
+// USACO 2016 January Contest, Bronze
+// Problem 3. Mowing the Field
 
 #include <bits/stdc++.h>
 using namespace std;

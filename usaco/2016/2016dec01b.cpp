@@ -1,4 +1,6 @@
-// Square Pasture【USACO 2016 December Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=663
+// USACO 2016 December Contest, Bronze
+// Problem 1. Square Pasture
 
 #include <bits/stdc++.h>
 

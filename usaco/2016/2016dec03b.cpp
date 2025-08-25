@@ -1,4 +1,6 @@
-// The Cow-Signal【USACO 2016 December Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=665
+// USACO 2016 December Contest, Bronze
+// Problem 3. The Cow-Signal
 
 #include <bits/stdc++.h>
 

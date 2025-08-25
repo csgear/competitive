@@ -1,10 +1,10 @@
-// It's Mooin' Time【 USACO 2024 December Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=1445
+// USACO 2024 December Contest, Bronze
+// Problem 3. It's Mooin' Time
 
 #include <bits/stdc++.h>
 using namespace std;
-
-#define ll long long
-#define fastio ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+using LL = long long;
 
 const int N = 20000 + 20;
 char a[N];
@@ -13,8 +13,10 @@ vector<string> ans;
 int vis[N];
 
 int main() {
-    fastio;
-    scanf("%d%d", &n, &f);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    cin >> n >> f;
     scanf("%s", a + 1);
 
     for (char i = 'a'; i <= 'z'; i++) {
