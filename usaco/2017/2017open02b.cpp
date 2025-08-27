@@ -1,3 +1,7 @@
+// https://usaco.org/index.php?page=viewproblem2&cpid=736
+// USACO 2017 US Open Contest, Bronze
+// Problem 2. Bovine Genomics
+
 #include <bits/stdc++.h>
 using namespace std;
 
