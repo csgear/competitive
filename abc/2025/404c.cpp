@@ -22,7 +22,7 @@ void merge(int u, int v) {
 }
 
 int main() {
-    istream::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
     cin >> n >> m;

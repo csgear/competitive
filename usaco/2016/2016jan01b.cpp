@@ -1,4 +1,6 @@
-// Promotion Counting 【USACO 2016 February Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=591
+// USACO 2016 January Contest, Bronze
+// Problem 1. Promotion Counting
 
 #include <bits/stdc++.h>
 

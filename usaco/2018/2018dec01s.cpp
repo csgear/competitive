@@ -1,4 +1,6 @@
-// Convention【USACO 2018 December Contest, Silver】 (8分)
+// https://usaco.org/index.php?page=viewproblem2&cpid=858
+// USACO 2018 December Contest, Silver
+// Problem 1. Convention
 
 #include <bits/stdc++.h>
 using namespace std;

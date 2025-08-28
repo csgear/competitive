@@ -1,21 +1,16 @@
 // https://www.luogu.com.cn/problem/P1102
 
 #include <bits/stdc++.h>
-
 using namespace std;
+using LL = long long;
 
-#define fastio                        \
-    ios_base::sync_with_stdio(false); \
-    cin.tie(NULL);                    \
-    cout.tie(NULL);
-#define ll long long
+const int N = 2e5 + 5;
 
-constexpr int MAXN = 2e5 + 5;
-
-int a[MAXN];
+int a[N];
 
 int main() {
-    fastio;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
 
     int n, c;
     cin >> n >> c;
@@ -24,10 +19,12 @@ int main() {
     int l = 1, r1 = 1, r2 = 1;
     ll ans = 0;
     for (l = 1; l <= n; l++) {
+        // 2-points, find the range in a,
+        // such that a[r2] - a[l] == c and a[r1] - a[l] < c
         while (r1 <= n && a[r1] - a[l] < c) r1++;
-        while (r2 <= n && a[r2] - a[l] <= c) r2++;
-        if (a[r1] - a[l] == c && a[r2 - 1] - a[l] == c) {
-            ans += r2 - r1;
+        while (r1 <= n && a[r1] - a[l] == c) {
+            r1++;
+            ans++;
         }
     }
     cout << ans;

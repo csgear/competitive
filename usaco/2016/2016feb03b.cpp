@@ -1,4 +1,6 @@
-// Load Balancing【USACO 2016 February Contest, Bronze】 (8分)
+// https://usaco.org/index.php?page=viewproblem2&cpid=617
+// USACO 2016 February Contest, Bronze
+// Problem 3. Load Balancing
 
 #include <bits/stdc++.h>
 

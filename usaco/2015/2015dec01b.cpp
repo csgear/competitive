@@ -1,4 +1,6 @@
-// P30214-Fence Painting【USACO 2015 December Contest, Bronze】
+// https://usaco.org/index.php?cpid=567&page=viewproblem2
+// USACO 2015 December Contest, Bronze
+// Problem 1. Fence Painting
 
 #include <bits/stdc++.h>
 using namespace std;

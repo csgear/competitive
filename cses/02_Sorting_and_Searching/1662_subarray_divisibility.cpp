@@ -3,6 +3,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+using LL = long long;
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -15,17 +17,15 @@ int main() {
         cin >> a[i];
     }
 
-    vector<long long> count(n, 0);
+    vector<LL> count(n, 0);
     count[0] = 1;
 
-    long long prefix_sum = 0;
-    long long result = 0;
+    LL prefix_sum = 0;
+    LL result = 0;
 
     for (int i = 0; i < n; ++i) {
-        prefix_sum = (prefix_sum + a[i] % n + n) % n;
-
+        prefix_sum = ((prefix_sum + a[i]) % n + n) % n;
         result += count[prefix_sum];
-
         count[prefix_sum]++;
     }
 

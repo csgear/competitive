@@ -1,4 +1,6 @@
-// Milk Pails【USACO 2016 February Contest, Bronze】 (3分)
+// https://usaco.org/index.php?page=viewproblem2&cpid=615
+// USACO 2016 February Contest, Bronze
+// Problem 1. Milk Pails
 
 #include <bits/stdc++.h>
 using namespace std;

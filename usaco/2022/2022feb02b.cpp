@@ -1,4 +1,6 @@
-// Photoshoot 2【USACO 2022 February Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=1204
+// USACO 2022 February Contest, Bronze
+// Problem 2. Photoshoot 2
 
 #include <bits/stdc++.h>
 using namespace std;

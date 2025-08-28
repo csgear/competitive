@@ -1,4 +1,6 @@
-// Contaminated Milk【USACO 2015 December Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=569
+// USACO 2015 December Contest, Bronze
+// Problem 3. Contaminated Milk
 
 #include <bits/stdc++.h>
 using namespace std;
