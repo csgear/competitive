@@ -1,4 +1,6 @@
-// Cow Gymnastics 【USACO 2019 December Contest, Bronze】
+// https://usaco.org/index.php?page=viewproblem2&cpid=963
+// USACO 2019 December Contest, Bronze
+// Problem 1. Cow Gymnastics
 
 #include <bits/stdc++.h>
 
