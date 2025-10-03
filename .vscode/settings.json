@@ -13,5 +13,11 @@
 
   "editor.formatOnSave": true,
   "editor.formatOnType": false,
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "Extract ticket ID from current feature branch name and use it as first part of the commit message. Format: 'TICKET-ID - Brief description'. Keep the first line under 72 characters. Use imperative mood (e.g., 'Add', 'Fix', 'Update'). Include detailed explanation in body if needed."
+    }
+  ]
 }
