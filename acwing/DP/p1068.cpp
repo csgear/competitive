@@ -18,7 +18,7 @@ int main() {
         a[i + n] = a[i];
     }
 
-    for (int i = 1; i <= (n << 1); i++) pre[i] = pre[i - 1] + a[i];
+    for (int i = 1; i <= 2 * n; i++) pre[i] = pre[i - 1] + a[i];
 
     // f for max, g for min
     memset(f, -0x3f, sizeof f);
@@ -30,7 +30,7 @@ int main() {
 
     for (int len = 2; len <= n; len++) {
         // l + len - 1 is the boundary of r
-        for (int l = 1; l + len - 1 <= (n << 1); l++) {
+        for (int l = 1; l + len - 1 <= 2 * n; l++) {
             int r = l + len - 1;
             for (int k = l; k < r; k++) {
                 f[l][r] = max(f[l][r], f[l][k] + f[k + 1][r] + pre[r] - pre[l - 1]);
