@@ -12,7 +12,7 @@ ll dp[N][K];
 tuple<int, int, int> query[M];
 vector<ll> ans;
 
-void knapsack_transition(int pre_idx, int nx_idx, int i) {
+void knapsack(int pre_idx, int nx_idx, int i) {
     for (int j = 0; j < K; j++) {
         dp[nx_idx][j] = dp[pre_idx][j];
         if (j >= w[i]) {
@@ -25,19 +25,22 @@ void solve(int l, int r, const vector<int> &qid) {
     if (l + 1 == r) {
         for (int i : qid) {
             auto [nl, nr, nc] = query[i];
-            // assert(nl == l && nr == r);
             ans[i] = (nc >= w[l] ? v[l] : 0);
         }
         return;
     }
     int m = (l + r) / 2;
     memset(dp[m], 0, sizeof(dp[m]));
-    for (int i = m - 1; i >= l; i--) knapsack_transition(i + 1, i, i);
-    for (int i = m + 1; i <= r; i++) knapsack_transition(i - 1, i, i - 1);
+    for (int i = m - 1; i >= l; i--) {
+        knapsack(i + 1, i, i);
+    }
+    for (int i = m + 1; i <= r; i++) {
+        knapsack(i - 1, i, i - 1);
+    }
     vector<int> qid_l, qid_r;
     for (int i : qid) {
         auto [nl, nr, nc] = query[i];
-        if (nr <= m) {
+        if (nr < m) {
             qid_l.push_back(i);
         } else if (nl >= m) {
             qid_r.push_back(i);
