@@ -37,6 +37,7 @@ int main() {
     int A, B;
     cin >> A >> B;
     divide(A);
+    cout << mp.size() << endl;
     int res = 1;
     for (auto [p, k] : mp) {
         if ((p - 1) % MOD == 0) {
@@ -46,6 +47,7 @@ int main() {
             res = (LL)res * (modmul(p, k * B + 1) - 1 + MOD) % MOD * modmul(p - 1, MOD - 2) % MOD;
         }
     }
+    if (!A) res = 0;
     cout << res << endl;
     return 0;
 }
