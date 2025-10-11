@@ -9,6 +9,7 @@ bool st[N];
 int pre[N];
 
 void euler1(int n) {
+    phi[1] = 1;
     for (int i = 2; i <= n; i++) phi[i] = i;
     for (int i = 2; i <= n; i++) {
         if (phi[i] == i) {
@@ -39,16 +40,8 @@ void euler2(int n) {
 }
 
 void init() {
-    euler1(1000);
-    cout << "i phi(i)" << endl;
-    for (int i = 1; i <= 20; i++) {
-        cout << i << " " << phi[i] << endl;
-    }
+    // euler1(1000);
     euler2(1000);
-    cout << "i phi(i)" << endl;
-    for (int i = 1; i <= 20; i++) {
-        cout << i << " " << phi[i] << endl;
-    }
     for (int i = 1; i <= 1000; i++) {
         pre[i] = pre[i - 1] + phi[i];
     }
@@ -60,7 +53,7 @@ int main() {
     init();
     for (int i = 1; i <= c; i++) {
         cin >> n;
-        cout << i << " " << n << " " << pre[n] * 2 + 3 << endl;
+        cout << i << " " << n << " " << pre[n] * 2 + 1 << endl;
     }
     return 0;
 }
