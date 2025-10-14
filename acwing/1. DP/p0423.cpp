@@ -4,6 +4,7 @@
 using namespace std;
 using LL = long long;
 
+// 0-1 knapsack
 int main() {
     int T, M;
     cin >> T >> M;

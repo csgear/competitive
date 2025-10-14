@@ -11,6 +11,7 @@ int way[N];
 
 int n, m;
 
+// group knapsack
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
