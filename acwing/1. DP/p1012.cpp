@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1014/
+// 2D LIS problem on pairs (height, weight)
+// Sort by one dimension, find LIS on the other
+// State: f[i] = length of LIS ending at pair i
 
 #include <bits/stdc++.h>
 using namespace std;

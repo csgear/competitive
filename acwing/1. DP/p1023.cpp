@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1025/
+// Coin change - complete knapsack variant
+// Count ways to make exact change with given coin denominations
+// State: dp[i] = number of ways to make amount i
 
 #include <bits/stdc++.h>
 using namespace std;

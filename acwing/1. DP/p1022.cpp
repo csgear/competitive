@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1024/
+// 2D bounded knapsack problem
+// Two capacity constraints (volume and weight)
+// State: f[i][j] = max value with volume ≤ i and weight ≤ j
 
 #include <bits/stdc++.h>
 using namespace std;

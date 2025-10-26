@@ -1,5 +1,7 @@
 // https://www.acwing.com/problem/content/2177/
-// max bipartite matching - Dinic's algorithm
+// Maximum bipartite matching using Dinic's max flow
+// Model as flow: source → left set → right set → sink, all edges capacity 1
+// Max matching = max flow value
 
 #include <bits/stdc++.h>
 using namespace std;

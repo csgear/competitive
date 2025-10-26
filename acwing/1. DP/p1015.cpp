@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1017/
+// Grid path DP - find max sum path from top-left to bottom-right
+// State: f[i][j] = max sum reaching cell (i, j)
+// Can only move right or down
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1020/
+// Grid DP - maximum sum path with restricted moves
+// State: f[i][j] = max sum reaching (i, j)
+// Movements depend on problem constraints (typically right/down)
 
 #include <bits/stdc++.h>
 using namespace std;

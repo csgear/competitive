@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/259/
+// Binary search on graph bipartition
+// Check if graph can be split into two sets with max edge weight ≤ mid
+// Uses DFS/BFS to verify bipartition feasibility for each binary search iteration
 
 #include <bits/stdc++.h>
 using namespace std;

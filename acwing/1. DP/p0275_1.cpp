@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/277/
+// Pass the coin - optimized version with 3D DP
+// Two people walk simultaneously, simplified state representation
+// f[k][i][j] instead of 4D, using diagonal property (k = i+j)
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1176/
+// Strongly connected components - Tarjan's algorithm
+// Find SCCs, build condensed DAG, count sources and sinks
+// Answer = max(sources, sinks) edges needed for strong connectivity
 
 // To make a directed graph strongly connected, let p be the number of strongly connected components
 // with in-degree zero (sources), and q the number with out-degree zero (sinks) in the condensed

@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1129/
+// Shortest path with layered constraints
+// BFS/Dijkstra on extended state space (node, layer)
+// Models problem as graph with multiple layers or states
 
 #include <bits/stdc++.h>
 using namespace std;

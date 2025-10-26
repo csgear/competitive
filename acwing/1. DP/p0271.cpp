@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/273/
+// Young tableaux counting with 5-dimensional DP
+// State: dp[a][b][c][d][e] = count with given row configuration
+// Ensures tableau property: rows/columns strictly increasing
 
 #include <bits/stdc++.h>
 using namespace std;

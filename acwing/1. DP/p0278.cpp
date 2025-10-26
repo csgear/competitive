@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/280/
+// Number combination to target sum
+// Complete knapsack variant: count ways to reach exact sum
+// State: dp[i] = number of ways to sum to i
 
 #include <bits/stdc++.h>
 using namespace std;

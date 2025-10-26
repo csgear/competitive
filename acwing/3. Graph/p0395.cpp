@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/397/
+// Edge-biconnected components - Tarjan's bridge detection
+// Find bridges, then count leaf components in bridge tree
+// Answer = (leaf_count + 1) / 2 edges needed to make graph 2-edge-connected
 
 // To make the graph connected, the minimum number of edges that need to be added is given by:
 // ( c + 1 ) / 2

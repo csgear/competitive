@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1029/
+// Two paths from top-left to bottom-right simultaneously
+// 3D DP: f[k][i][j] = max sum with two people at (i, k-i) and (j, k-j)
+// Both paths collect items, avoid double counting same cell
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1059/
+// Stock trading with at most k transactions
+// 3D DP: f[i][j][0/1] = max profit on day i with j transactions completed
+// Holding (1) or not holding (0) stock
 
 #include <bits/stdc++.h>
 using namespace std;

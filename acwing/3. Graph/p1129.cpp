@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1131/
+// Shortest path problem variant
+// SPFA or Dijkstra with state tracking
+// Optimized for specific problem constraints
 
 #include <bits/stdc++.h>
 using namespace std;

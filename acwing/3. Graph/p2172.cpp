@@ -1,5 +1,7 @@
 // https://www.acwing.com/problem/content/2174/
-// max flow - Dinic's algorithm
+// Maximum flow - Dinic's algorithm with level graph and blocking flow
+// BFS builds level graph, DFS finds blocking flow with current arc optimization
+// Time: O(V²E), better for dense graphs, O(E√V) for unit capacity
 
 #include <bits/stdc++.h>
 using namespace std;

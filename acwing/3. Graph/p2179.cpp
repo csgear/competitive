@@ -1,6 +1,7 @@
 // https://www.acwing.com/problem/content/2181/
-
-// multiple bipartite matching - Dinic's algorithm
+// Multiple bipartite matching with capacity constraints
+// Each left/right node has capacity limit, model as max flow
+// Uses Dinic's algorithm with capacitated nodes
 
 #include <bits/stdc++.h>
 using namespace std;

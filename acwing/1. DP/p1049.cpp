@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1051/
+// Stock trading with unlimited transactions
+// State machine DP: f[i][0] = max profit at day i not holding stock
+// f[i][1] = max profit at day i holding stock
 
 #include <bits/stdc++.h>
 using namespace std;

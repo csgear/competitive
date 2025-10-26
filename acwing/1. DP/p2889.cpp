@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2892/
+// Interval DP with cost optimization
+// Merge intervals with minimum cost using prefix sums
+// State: f[i][j] = min cost to process interval [i, j]
 
 #include <bits/stdc++.h>
 using namespace std;

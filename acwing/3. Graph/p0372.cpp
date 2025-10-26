@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/374/
+// Grid-based bipartite matching (棋盘覆盖问题)
+// Model grid cells as bipartite graph, find maximum matching
+// Uses Hungarian algorithm or DFS-based matching
 
 #include <bits/stdc++.h>
 using namespace std;

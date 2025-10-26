@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/175/
+// Matrix chain multiplication with constraints
+// DP to find optimal parenthesization minimizing operations
+// State: dp[i][j] = minimum operations to multiply matrices i to j
 
 #include <bits/stdc++.h>
 using namespace std;
