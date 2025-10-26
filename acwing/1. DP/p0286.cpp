@@ -1,5 +1,8 @@
 // https://www.acwing.com/problem/content/288/
 // https://www.luogu.com.cn/problem/P2014
+// Tree DP: select courses with prerequisites to maximize credit
+// State: f[u][j] = max credit from subtree u selecting j courses
+// Knapsack on tree structure
 
 #include <bits/stdc++.h>
 using namespace std;

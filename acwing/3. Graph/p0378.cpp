@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/380/
+// Knight placement on chessboard - bipartite matching
+// Color cells like chessboard, knights attack opposite color
+// Maximum knights = n*n - maximum matching
 
 #include <bits/stdc++.h>
 using namespace std;

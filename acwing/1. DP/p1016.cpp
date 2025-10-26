@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1018/
+// Longest Decreasing Subsequence variant
+// DP to find longest strictly decreasing subsequence
+// State: dp[i] = length of LDS ending at i
 
 #include <bits/stdc++.h>
 using namespace std;

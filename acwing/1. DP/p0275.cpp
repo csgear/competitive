@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/277/
+// Pass the coin problem - pick k numbers from grid
+// 4D DP: two people walk from top-left simultaneously
+// State: f[x1][y1][x2][y2] = max sum when persons at different positions
 
 #include <bits/stdc++.h>
 using namespace std;

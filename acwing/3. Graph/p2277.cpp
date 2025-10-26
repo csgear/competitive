@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2279/
+// Minimum cost maximum flow (MCMF)
+// Find max flow with minimum total cost using SPFA + augmenting paths
+// Each iteration finds shortest cost augmenting path
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/322/
+// Energy necklace - circular arrangement optimization
+// Break circle, use interval DP to find max energy release
+// State: dp[i][j] = max energy for beads in range [i, j]
 
 #include <bits/stdc++.h>
 using namespace std;

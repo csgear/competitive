@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2192/
+// Minimum flow with source and sink, lower/upper bounds
+// Find feasible flow, add t→s edge, then push back flow from t to s
+// Answer = initial flow through t→s minus pushback amount
 
 #include <bits/stdc++.h>
 using namespace std;

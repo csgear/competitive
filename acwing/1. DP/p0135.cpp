@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/137/
+// Maximum subarray sum with window size constraint [m, n]
+// Uses monotonic deque to maintain minimum prefix sum in sliding window
+// Time: O(n), Space: O(n)
 
 #include <bits/stdc++.h>
 using namespace std;

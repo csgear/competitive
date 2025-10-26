@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/378/
+// Bipartite matching - maximum independent set
+// Left side: items, Right side: constraints
+// Answer = total items - maximum matching
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/274/
+// Longest Common Subsequence (LCS) with twist
+// Modified LCS where matching gives different scores
+// State: dp[i][j] = max value using first i from a[], j from b[]
 
 #include <bits/stdc++.h>
 using namespace std;

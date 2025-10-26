@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/284/
+// Stone merging with prefix sum optimization
+// Interval DP: f[i][j] = min cost to merge stones from i to j
+// Uses prefix sum to calculate merge cost efficiently
 
 #include <bits/stdc++.h>
 using namespace std;

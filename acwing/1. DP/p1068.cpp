@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1070/
+// Circular array energy maximization
+// Break circle by doubling array, use interval DP
+// State: f[i][j] = max energy from segment [i, j]
 
 #include <bits/stdc++.h>
 using namespace std;

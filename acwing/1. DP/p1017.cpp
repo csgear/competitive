@@ -1,5 +1,7 @@
 // https://www.acwing.com/problem/content/1019/
-// LIS
+// Mountain sequence - LIS + LDS combination
+// f[i] = LIS ending at i, g[i] = LDS starting from i
+// Find position with maximum f[i] + g[i] - 1
 
 #include <bits/stdc++.h>
 using namespace std;

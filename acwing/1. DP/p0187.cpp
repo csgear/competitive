@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/189/
+// Missile interception - find minimum number of systems needed
+// System 1: heights must be non-increasing (LIS problem)
+// System 2: heights must be non-decreasing (greedy + DFS)
 
 #include <bits/stdc++.h>
 using namespace std;

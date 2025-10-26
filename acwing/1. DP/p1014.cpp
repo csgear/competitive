@@ -1,5 +1,7 @@
 // https://www.acwing.com/problem/content/1016/
-// LIS
+// Longest Increasing Subsequence (LIS) with greedy optimization
+// f[i] = LIS length ending at i, g[i] = LDS length starting from i
+// Finds longest "mountain" sequence (increasing then decreasing)
 
 #include <bits/stdc++.h>
 using namespace std;

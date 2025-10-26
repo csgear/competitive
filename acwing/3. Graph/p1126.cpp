@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1128/
+// Maximum product path - modified Dijkstra
+// Use log transformation: log(a*b) = log(a) + log(b)
+// Find shortest path in log space, then exponentiate result
 
 #include <bits/stdc++.h>
 using namespace std;

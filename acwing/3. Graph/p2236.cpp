@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2238/
+// Minimum cut - find cut edges in max flow
+// Run max flow, then DFS from source in residual graph
+// Cut edges: forward edges from S-side to T-side with capacity 0
 
 #include <bits/stdc++.h>
 using namespace std;

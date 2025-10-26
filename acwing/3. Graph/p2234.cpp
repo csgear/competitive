@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2236/
+// Max flow with demands - circulation with lower bounds
+// Transform demands into flow constraints, add super source/sink
+// Check if feasible circulation exists
 
 #include <bits/stdc++.h>
 using namespace std;

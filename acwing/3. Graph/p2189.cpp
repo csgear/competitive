@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2191/
+// Maximum flow with source and sink, lower/upper bounds on edges
+// Add auxiliary edge t→s, find circulation, then compute s→t max flow
+// Uses Dinic's algorithm with lower bound transformation
 
 #include <bits/stdc++.h>
 using namespace std;

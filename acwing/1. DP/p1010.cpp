@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1012/
+// LIS with path reconstruction using patience sorting
+// f[i] = length of LIS ending at position i
+// p[i] = previous element index in LIS path
 
 #include <bits/stdc++.h>
 using namespace std;

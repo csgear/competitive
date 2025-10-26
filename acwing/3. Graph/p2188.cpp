@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2190/
+// Feasible flow - max flow with lower and upper bounds on edges
+// Transform to standard max flow: add super source/sink for balance
+// Stores both lower bound and capacity (upper - lower)
 
 #include <bits/stdc++.h>
 using namespace std;

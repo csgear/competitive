@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1026/
+// Multiple knapsack with binary optimization
+// Each item has limited quantity, optimize with binary grouping
+// State: f[i] = max value with capacity i
 
 #include <bits/stdc++.h>
 using namespace std;

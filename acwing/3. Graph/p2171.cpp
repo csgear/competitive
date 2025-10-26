@@ -1,5 +1,7 @@
 // https://www.acwing.com/problem/content/2173/
-// max flow - Edmonds-Karp algorithm
+// Maximum flow - Edmonds-Karp algorithm (BFS-based Ford-Fulkerson)
+// Finds augmenting paths using BFS, updates residual graph
+// Time: O(VE²), suitable for smaller graphs
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/425/
+// Classic 0-1 knapsack problem
+// State: dp[i] = min time to collect i herbs
+// Space-optimized 1D DP with reverse iteration
 
 #include <bits/stdc++.h>
 using namespace std;

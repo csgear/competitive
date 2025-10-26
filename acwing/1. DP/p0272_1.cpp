@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/274/
+// LCS variant with 1D space optimization
+// Uses rolling array or space-compressed DP
+// State: optimized to O(n) space instead of O(n²)
 
 #include <bits/stdc++.h>
 using namespace std;

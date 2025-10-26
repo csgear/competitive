@@ -1,5 +1,7 @@
 // https://www.acwing.com/problem/content/484/
-// LIS
+// Longest Increasing Subsequence (LIS)
+// Two arrays: f[i] = LIS ending at i, g[i] = LDS starting from i
+// Combines increasing and decreasing sequences
 
 #include <bits/stdc++.h>
 using namespace std;

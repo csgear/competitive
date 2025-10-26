@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1023/
+// Partition into equal sum subsets
+// 0-1 knapsack variant: count ways to reach target sum
+// State: dp[i] = number of ways to achieve sum i
 
 #include <bits/stdc++.h>
 using namespace std;

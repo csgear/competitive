@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1128/
+// Maximum product path - alternative implementation
+// Uses adjacency list instead of matrix
+// Same approach: log transformation + shortest path
 
 #include <bits/stdc++.h>
 using namespace std;

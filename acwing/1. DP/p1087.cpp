@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1089/
+// DP with monotonic deque optimization for sliding window
+// Find max sum of k non-overlapping subarrays
+// Uses deque to maintain optimal previous states efficiently
 
 #include <bits/stdc++.h>
 using namespace std;

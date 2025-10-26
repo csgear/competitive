@@ -1,5 +1,8 @@
 // https://www.acwing.com/problem/content/285/
 // https://www.luogu.com.cn/problem/P4342
+// Circular stone merging (both max and min)
+// Break circle at each position, solve as linear interval DP
+// State: f[i][j] = optimal cost for range [i, j]
 
 #include <bits/stdc++.h>
 using namespace std;

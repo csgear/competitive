@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1015/
+// Machine scheduling with weight matrix optimization
+// DP with path tracking: find optimal machine assignment
+// State: f[i][j] = max profit using first i items on machine j
 
 #include <bits/stdc++.h>
 using namespace std;

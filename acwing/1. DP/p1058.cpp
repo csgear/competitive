@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1060/
+// Stock trading with cooldown period
+// State machine: f[i][0] = holding, f[i][1] = sold today, f[i][2] = cooldown
+// Must wait one day after selling before buying again
 
 #include <bits/stdc++.h>
 using namespace std;

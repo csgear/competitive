@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1131/
+// SPFA shortest path with constraints
+// Bellman-Ford variant using queue optimization
+// Handles negative weights and constraint checking
 
 #include <bits/stdc++.h>
 using namespace std;

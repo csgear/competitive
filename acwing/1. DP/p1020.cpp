@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/1022/
+// Constrained sequence optimization
+// 2D DP with weight considerations
+// State: f[i][j] = optimal value using first i items with state j
 
 #include <bits/stdc++.h>
 using namespace std;
