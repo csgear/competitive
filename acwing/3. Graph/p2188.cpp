@@ -66,11 +66,10 @@ int dfs(int u, int limit) {
 }
 
 int dinic() {
-    int max_flow = 0;
-    while (bfs()) {
-        max_flow += dfs(S, INT_MAX);
-    }
-    return max_flow;
+    int res = 0, flow;
+    while (bfs())
+        while (flow = dfs(S, INF)) res += flow;
+    return res;
 }
 
 int main() {
