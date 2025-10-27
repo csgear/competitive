@@ -4,7 +4,7 @@
 using namespace std;
 
 const int N = 1010;
-const int M = (250000 + 10) * 2;
+const int M = 251010;
 const int INF = 1e8;
 
 struct Edge {
