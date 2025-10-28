@@ -1,15 +1,13 @@
-// https://www.acwing.com/problem/content/2194/
+// https://www.acwing.com/problem/content/2196/
 // compute min cost max flow and max cost max flow
-// set the cost of edges from left to right as positive for min cost
-// and negative for max cost
 
 #include <bits/stdc++.h>
 using namespace std;
 
 using ll = long long;
 
-const int N = 250;
-const int M = 20000;
+const int N = 110;
+const int M = 1010;
 const ll INF = 1e18;
 
 struct Edge {
@@ -18,10 +16,12 @@ struct Edge {
 } edges[M];
 
 int head[N], cnt = -1;
+int a[N];
 ll dist[N];
 ll incf[N];
 int pre[N];
 bool inq[N];
+int n, S, T;
 
 void add_edge(int u, int v, ll cap, ll cost) {
     edges[++cnt] = {v, head[u], cap, cost};
@@ -32,13 +32,14 @@ void add_edge(int u, int v, ll cap, ll cost) {
 
 bool spfa(int S, int T, int n) {
     fill(dist, dist + n + 1, INF);
+    fill(incf, incf + n + 1, 0);
+    fill(pre, pre + n + 1, -1);
     fill(inq, inq + n + 1, false);
-    queue<int> q;
     dist[S] = 0;
-    inq[S] = true;
     incf[S] = INF;
+    queue<int> q;
     q.push(S);
-
+    inq[S] = true;
     while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -77,71 +78,36 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int m, n;
-    cin >> m >> n;
+    cin >> n;
 
-    vector<int> a(m + 1);
-    vector<int> b(n + 1);
-    vector<vector<int>> cost(m + 1, vector<int>(n + 1));
-
-    for (int i = 1; i <= m; i++) {
+    ll tot = 0;
+    for (int i = 1; i <= n; i++) {
         cin >> a[i];
+        tot += a[i];
+    }
+    ll avg = tot / n;
+
+    int S = 0, T = n + 1;
+
+    memset(head, -1, sizeof head);
+
+    for (int i = 1; i <= n; i++) {
+        int next = (i % n) + 1;
+        add_edge(i, next, INF, 1);
+        add_edge(next, i, INF, 1);
     }
 
     for (int i = 1; i <= n; i++) {
-        cin >> b[i];
-    }
-
-    for (int i = 1; i <= m; i++) {
-        for (int j = 1; j <= n; j++) {
-            cin >> cost[i][j];
+        if (a[i] > avg) {
+            add_edge(S, i, a[i] - avg, 0);
+        } else if (a[i] < avg) {
+            add_edge(i, T, avg - a[i], 0);
         }
     }
 
-    int S = 0, T = m + n + 1;
+    auto [flow, max_cost] = mcmf(S, T, T);
 
-    // min cost
-    memset(head, -1, sizeof head);
-    cnt = -1;
-
-    for (int i = 1; i <= m; i++) {
-        add_edge(S, i, a[i], 0);
-    }
-
-    for (int i = 1; i <= m; i++) {
-        for (int j = 1; j <= n; j++) {
-            add_edge(i, m + j, INF, cost[i][j]);
-        }
-    }
-
-    for (int j = 1; j <= n; j++) {
-        add_edge(m + j, T, b[j], 0);
-    }
-
-    auto [flow1, min_cost] = mcmf(S, T, T);
-
-    // max cost
-    memset(head, -1, sizeof head);
-    cnt = -1;
-
-    for (int i = 1; i <= m; i++) {
-        add_edge(S, i, a[i], 0);
-    }
-
-    for (int i = 1; i <= m; i++) {
-        for (int j = 1; j <= n; j++) {
-            add_edge(i, m + j, INF, -cost[i][j]);
-        }
-    }
-
-    for (int j = 1; j <= n; j++) {
-        add_edge(m + j, T, b[j], 0);
-    }
-
-    auto [flow2, max_cost] = mcmf(S, T, T);
-
-    cout << min_cost << endl;
-    cout << -max_cost << endl;
+    cout << max_cost << endl;
 
     return 0;
 }
