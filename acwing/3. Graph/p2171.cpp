@@ -58,7 +58,6 @@ int ek() {
             min_flow = min(min_flow, edges[i].capacity);
         }
 
-        // 每一条反向边对应的正向边的流量减去 min_flow
         for (int i = pre[T]; i != -1; i = pre[edges[i ^ 1].to]) {
             edges[i].capacity -= min_flow;
             edges[i ^ 1].capacity += min_flow;
