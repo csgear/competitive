@@ -1,14 +1,15 @@
-// https://www.acwing.com/problem/content/2236/
-// Max flow with demands - circulation with lower bounds
-// Transform demands into flow constraints, add super source/sink
-// Check if feasible circulation exists
+// https://www.acwing.com/problem/content/2242/
+// Bipartite matching with vertex splitting - cows, food, drinks
+// Split each cow into in/out nodes with capacity constraint
+// Max flow from source (food) through cows to sink (drinks)
 
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 10010;
-const int M = (100010 + N) * 2;
-const int INF = 2147483647;
+const int N = 410;
+// 100 cows * 100 food + 100 cows * 100 drinks + split vertex + super source/sink
+const int M = (100 * 100 * 2 + 3 * 100 + 10) * 2;
+const int INF = 1e8;
 
 struct Edge {
     int to, nxt, cap;
@@ -16,10 +17,10 @@ struct Edge {
 
 int head[N], cnt = -1;
 int d[N], cur[N];
-int n, m, sc, tc, S, T;
+int n, m1, m2, S, T;
 
-void add_edge(int u, int v, int c) {
-    edges[++cnt] = {v, head[u], c};
+void add_edge(int u, int v, int cap) {
+    edges[++cnt] = {v, head[u], cap};
     head[u] = cnt;
     edges[++cnt] = {u, head[v], 0};
     head[v] = cnt;
@@ -31,7 +32,6 @@ bool bfs() {
     d[S] = 0;
     cur[S] = head[S];
     q.push(S);
-
     while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -56,7 +56,7 @@ int dfs(int u, int limit) {
         int v = edges[i].to;
         if (d[v] == d[u] + 1 && edges[i].cap > 0) {
             int t = dfs(v, min(limit - flow, edges[i].cap));
-            if (!t) d[v] = -1;
+            if (t == 0) d[v] = -1;
             edges[i].cap -= t;
             edges[i ^ 1].cap += t;
             flow += t;
@@ -64,7 +64,6 @@ int dfs(int u, int limit) {
     }
     return flow;
 }
-
 int dinic() {
     int res = 0, flow;
     while (bfs())
@@ -77,29 +76,38 @@ int main() {
     cin.tie(nullptr);
 
     memset(head, -1, sizeof head);
-    cin >> n >> m >> sc >> tc;
+
+    cin >> n >> m1 >> m2;
 
     S = 0;
-    T = n + 1;
-    int tot = 0;
+    T = 2 * n + m1 + m2 + 1;
 
-    for (int i = 1; i <= sc; i++) {
-        int x;
-        cin >> x;
-        add_edge(S, x, INF);
+    for (int i = 1; i <= m1; i++) {
+        add_edge(S, 2 * n + i, 1);
     }
 
-    for (int i = 1; i <= tc; i++) {
-        int x;
-        cin >> x;
-        add_edge(x, T, INF);
+    for (int i = 1; i <= m2; i++) {
+        add_edge(2 * n + m1 + i, T, 1);
     }
 
-    for (int i = 0; i < m; i++) {
-        int a, b, c;
-        cin >> a >> b >> c;
-        add_edge(a, b, c);
+    for (int i = 1; i <= n; i++) {
+        add_edge(i, i + n, 1);
+        int a, b;
+        cin >> a >> b;
+        for (int j = 1; j <= a; j++) {
+            int food;
+            cin >> food;
+            add_edge(2 * n + food, i, 1);
+        }
+
+        for (int j = 1; j <= b; j++) {
+            int drink;
+            cin >> drink;
+            add_edge(i + n, 2 * n + m1 + drink, 1);
+        }
     }
-    cout << dinic() << "\n";
+
+    cout << dinic() << endl;
+
     return 0;
 }

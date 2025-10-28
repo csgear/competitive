@@ -1,25 +1,22 @@
-// https://www.acwing.com/problem/content/2236/
-// Max flow with demands - circulation with lower bounds
-// Transform demands into flow constraints, add super source/sink
-// Check if feasible circulation exists
+// https://cses.fi/problemset/task/1703
 
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 10010;
-const int M = (100010 + N) * 2;
-const int INF = 2147483647;
+const int N = 1e5 + 5;
+const int M = 4e5 + 10;  // 足够大
+const int INF = 1e9;
 
 struct Edge {
     int to, nxt, cap;
 } edges[M];
 
-int head[N], cnt = -1;
-int d[N], cur[N];
-int n, m, sc, tc, S, T;
+int head[N * 2], cnt = -1;
+int d[N * 2], cur[N * 2];
+int n, m, S, T;
 
-void add_edge(int u, int v, int c) {
-    edges[++cnt] = {v, head[u], c};
+void add_edge(int u, int v, int cap) {
+    edges[++cnt] = {v, head[u], cap};
     head[u] = cnt;
     edges[++cnt] = {u, head[v], 0};
     head[v] = cnt;
@@ -31,11 +28,10 @@ bool bfs() {
     d[S] = 0;
     cur[S] = head[S];
     q.push(S);
-
     while (!q.empty()) {
         int u = q.front();
         q.pop();
-        for (int i = head[u]; i != -1; i = edges[i].nxt) {
+        for (int i = head[u]; ~i; i = edges[i].nxt) {
             int v = edges[i].to;
             if (d[v] == -1 && edges[i].cap > 0) {
                 d[v] = d[u] + 1;
@@ -51,12 +47,12 @@ bool bfs() {
 int dfs(int u, int limit) {
     if (u == T) return limit;
     int flow = 0;
-    for (int i = cur[u]; i != -1 && flow < limit; i = edges[i].nxt) {
+    for (int i = cur[u]; ~i && flow < limit; i = edges[i].nxt) {
         cur[u] = i;
         int v = edges[i].to;
         if (d[v] == d[u] + 1 && edges[i].cap > 0) {
             int t = dfs(v, min(limit - flow, edges[i].cap));
-            if (!t) d[v] = -1;
+            if (t == 0) d[v] = -1;
             edges[i].cap -= t;
             edges[i ^ 1].cap += t;
             flow += t;
@@ -66,40 +62,42 @@ int dfs(int u, int limit) {
 }
 
 int dinic() {
-    int res = 0, flow;
-    while (bfs())
-        while (flow = dfs(S, INF)) res += flow;
-    return res;
+    int maxFlow = 0;
+    while (bfs()) {
+        int flow;
+        while ((flow = dfs(S, INF)) > 0) {
+            maxFlow += flow;
+        }
+    }
+    return maxFlow;
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    cin >> n >> m;
     memset(head, -1, sizeof head);
-    cin >> n >> m >> sc >> tc;
+    cnt = -1;
 
-    S = 0;
-    T = n + 1;
-    int tot = 0;
-
-    for (int i = 1; i <= sc; i++) {
-        int x;
-        cin >> x;
-        add_edge(S, x, INF);
-    }
-
-    for (int i = 1; i <= tc; i++) {
-        int x;
-        cin >> x;
-        add_edge(x, T, INF);
+    for (int i = 1; i <= n; i++) {
+        add_edge(2 * i, 2 * i + 1, 1);
     }
 
     for (int i = 0; i < m; i++) {
-        int a, b, c;
-        cin >> a >> b >> c;
-        add_edge(a, b, c);
+        int u, v;
+        cin >> u >> v;
+        add_edge(2 * u + 1, 2 * v, INF);
+        add_edge(2 * v + 1, 2 * u, INF);
     }
-    cout << dinic() << "\n";
+
+    S = 0;
+    T = 2 * n + 2;
+
+    add_edge(S, 2 * 1, INF);
+    add_edge(2 * n + 1, T, INF);
+
+    int maxFlow = dinic();
+
     return 0;
 }

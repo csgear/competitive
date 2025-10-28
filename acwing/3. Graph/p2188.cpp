@@ -8,6 +8,7 @@ using namespace std;
 
 const int N = 210;
 const int M = (10200 + N) * 2;
+const int INF = 1e8;
 
 struct Edge {
     int to, nxt, low, cap;
@@ -66,11 +67,10 @@ int dfs(int u, int limit) {
 }
 
 int dinic() {
-    int max_flow = 0;
-    while (bfs()) {
-        max_flow += dfs(S, INT_MAX);
-    }
-    return max_flow;
+    int res = 0, flow;
+    while (bfs())
+        while (flow = dfs(S, INF)) res += flow;
+    return res;
 }
 
 int main() {

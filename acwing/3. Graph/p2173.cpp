@@ -1,14 +1,14 @@
-// https://www.acwing.com/problem/content/2236/
-// Max flow with demands - circulation with lower bounds
-// Transform demands into flow constraints, add super source/sink
-// Check if feasible circulation exists
+// https://www.acwing.com/problem/content/2175/
+// Maximum flow - Dinic's algorithm
+// BFS builds level graph, DFS finds blocking flow
+// Time: O(V²E), uses current arc optimization
 
 #include <bits/stdc++.h>
 using namespace std;
 
 const int N = 10010;
-const int M = (100010 + N) * 2;
-const int INF = 2147483647;
+const int M = 200010;
+const int INF = 1e8;
 
 struct Edge {
     int to, nxt, cap;
@@ -16,10 +16,10 @@ struct Edge {
 
 int head[N], cnt = -1;
 int d[N], cur[N];
-int n, m, sc, tc, S, T;
+int n, m, S, T;
 
-void add_edge(int u, int v, int c) {
-    edges[++cnt] = {v, head[u], c};
+void add_edge(int u, int v, int cap) {
+    edges[++cnt] = {v, head[u], cap};
     head[u] = cnt;
     edges[++cnt] = {u, head[v], 0};
     head[v] = cnt;
@@ -29,9 +29,8 @@ bool bfs() {
     memset(d, -1, sizeof d);
     queue<int> q;
     d[S] = 0;
-    cur[S] = head[S];
     q.push(S);
-
+    cur[S] = head[S];
     while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -76,30 +75,19 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    cin >> n >> m >> S >> T;
+
     memset(head, -1, sizeof head);
-    cin >> n >> m >> sc >> tc;
 
-    S = 0;
-    T = n + 1;
-    int tot = 0;
-
-    for (int i = 1; i <= sc; i++) {
-        int x;
-        cin >> x;
-        add_edge(S, x, INF);
+    for (int i = 1; i <= m; i++) {
+        int u, v, cap;
+        cin >> u >> v >> cap;
+        add_edge(u, v, cap);
     }
 
-    for (int i = 1; i <= tc; i++) {
-        int x;
-        cin >> x;
-        add_edge(x, T, INF);
-    }
+    int res = dinic();
 
-    for (int i = 0; i < m; i++) {
-        int a, b, c;
-        cin >> a >> b >> c;
-        add_edge(a, b, c);
-    }
-    cout << dinic() << "\n";
+    cout << res << "\n";
+
     return 0;
 }

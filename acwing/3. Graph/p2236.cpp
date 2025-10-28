@@ -66,13 +66,10 @@ int dfs(int u, int limit) {
 }
 
 int dinic() {
-    int max_flow = 0;
-    while (bfs()) {
-        int flow = dfs(S, 1e9);
-        if (!flow) break;
-        max_flow += flow;
-    }
-    return max_flow;
+    int res = 0, flow;
+    while (bfs())
+        while (flow = dfs(S, INF)) res += flow;
+    return res;
 }
 
 void dfs(int u, bool visited[], int sign) {
