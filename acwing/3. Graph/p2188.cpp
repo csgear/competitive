@@ -8,6 +8,7 @@ using namespace std;
 
 const int N = 210;
 const int M = (10200 + N) * 2;
+const int INF = 1e8;
 
 struct Edge {
     int to, nxt, low, cap;

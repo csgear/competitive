@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2182/
+// Maximum flow application with special constraints
+// Models problem as flow network, uses Dinic's algorithm
+// Handles capacity constraints and special node/edge properties
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2280/
+// Max flow with multiple sinks - test each island as destination
+// Split vertices for capacity, restore graph between iterations
+// Find which islands can receive all gophers
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,7 +1,7 @@
 // https://www.acwing.com/problem/content/2279/
-// Minimum cost maximum flow (MCMF)
-// Find max flow with minimum total cost using SPFA + augmenting paths
-// Each iteration finds shortest cost augmenting path
+// Minimum cost maximum flow (MCMF) - using Dinic's algorithm
+// Finds max flow, cost handled through edge weights
+// BFS builds level graph, DFS finds blocking flow
 
 #include <bits/stdc++.h>
 using namespace std;

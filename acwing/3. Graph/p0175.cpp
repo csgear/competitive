@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/177/
+// Grid diagonal path - 0-1 BFS on corner lattice
+// Model grid corners as nodes, diagonal slashes as edges with 0/1 weight
+// Find minimum changes to create path from (0,0) to (n,m)
 
 #include <bits/stdc++.h>
 using namespace std;

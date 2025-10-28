@@ -1,4 +1,7 @@
 // https://www.acwing.com/problem/content/2189/
+// Time-layered max flow with connectivity check
+// Union-find checks initial reachability, then builds time-expanded graph
+// Incrementally adds edges for each day until target flow reached
 
 #include <bits/stdc++.h>
 using namespace std;

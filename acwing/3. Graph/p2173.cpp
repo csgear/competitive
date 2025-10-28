@@ -1,14 +1,13 @@
-// https://www.acwing.com/problem/content/2242/
-// Bipartite matching with vertex splitting - cows, food, drinks
-// Split each cow into in/out nodes with capacity constraint
-// Max flow from source (food) through cows to sink (drinks)
+// https://www.acwing.com/problem/content/2175/
+// Maximum flow - Dinic's algorithm
+// BFS builds level graph, DFS finds blocking flow
+// Time: O(V²E), uses current arc optimization
 
 #include <bits/stdc++.h>
 using namespace std;
 
-const int N = 410;
-// 100 cows * 100 food + 100 cows * 100 drinks + split vertex + super source/sink
-const int M = (100 * 100 * 2 + 3 * 100 + 10) * 2;
+const int N = 10010;
+const int M = 200010;
 const int INF = 1e8;
 
 struct Edge {
@@ -17,7 +16,7 @@ struct Edge {
 
 int head[N], cnt = -1;
 int d[N], cur[N];
-int n, m1, m2, S, T;
+int n, m, S, T;
 
 void add_edge(int u, int v, int cap) {
     edges[++cnt] = {v, head[u], cap};
@@ -30,8 +29,8 @@ bool bfs() {
     memset(d, -1, sizeof d);
     queue<int> q;
     d[S] = 0;
-    cur[S] = head[S];
     q.push(S);
+    cur[S] = head[S];
     while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -56,7 +55,7 @@ int dfs(int u, int limit) {
         int v = edges[i].to;
         if (d[v] == d[u] + 1 && edges[i].cap > 0) {
             int t = dfs(v, min(limit - flow, edges[i].cap));
-            if (t == 0) d[v] = -1;
+            if (!t) d[v] = -1;
             edges[i].cap -= t;
             edges[i ^ 1].cap += t;
             flow += t;
@@ -64,6 +63,7 @@ int dfs(int u, int limit) {
     }
     return flow;
 }
+
 int dinic() {
     int res = 0, flow;
     while (bfs())
@@ -75,39 +75,19 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
+    cin >> n >> m >> S >> T;
+
     memset(head, -1, sizeof head);
 
-    cin >> n >> m1 >> m2;
-
-    S = 0;
-    T = 2 * n + m1 + m2 + 1;
-
-    for (int i = 1; i <= m1; i++) {
-        add_edge(S, 2 * n + i, 1);
+    for (int i = 1; i <= m; i++) {
+        int u, v, cap;
+        cin >> u >> v >> cap;
+        add_edge(u, v, cap);
     }
 
-    for (int i = 1; i <= m2; i++) {
-        add_edge(2 * n + m1 + i, T, 1);
-    }
+    int res = dinic();
 
-    for (int i = 1; i <= n; i++) {
-        add_edge(i, i + n, 1);
-        int a, b;
-        cin >> a >> b;
-        for (int j = 1; j <= a; j++) {
-            int food;
-            cin >> food;
-            add_edge(2 * n + food, i, 1);
-        }
-
-        for (int j = 1; j <= b; j++) {
-            int drink;
-            cin >> drink;
-            add_edge(i + n, 2 * n + m1 + drink, 1);
-        }
-    }
-
-    cout << dinic() << endl;
+    cout << res << "\n";
 
     return 0;
 }
