@@ -1,20 +1,18 @@
-// https://www.acwing.com/problem/content/2176/
-// mcmf - min cost max flow using SPFA
-// Finds max flow with minimum cost in a flow network
+// https://www.acwing.com/problem/content/2194/
 
 #include <bits/stdc++.h>
 using namespace std;
 
 using ll = long long;
 
-const int N = 5010;
-const int M = 50010;
+const int N = 250;
+const int M = 20000;
 const ll INF = 1e18;
 
 struct Edge {
     int to, nxt;
     ll cap, cost;
-} edges[M * 2];
+} edges[M];
 
 int head[N], cnt = -1;
 ll dist[N];
@@ -67,7 +65,6 @@ pair<ll, ll> mcmf(int S, int T, int n) {
             edges[pre[i] ^ 1].cap += flow;
         }
         max_flow += flow;
-        //  the flow increment on every edge along the path is exactly flow
         min_cost += flow * dist[T];
     }
     return {max_flow, min_cost};
@@ -77,20 +74,71 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    memset(head, -1, sizeof head);
+    int m, n;
+    cin >> m >> n;
 
-    int n, m, S, T;
-    cin >> n >> m >> S >> T;
+    vector<int> a(m + 1);
+    vector<int> b(n + 1);
+    vector<vector<int>> cost(m + 1, vector<int>(n + 1));
 
-    for (int i = 0; i < m; i++) {
-        int u, v;
-        ll w, c;
-        cin >> u >> v >> w >> c;
-        add_edge(u, v, w, c);
+    for (int i = 1; i <= m; i++) {
+        cin >> a[i];
     }
 
-    auto [flow, cost] = mcmf(S, T, n);
-    cout << flow << " " << cost << '\n';
+    for (int i = 1; i <= n; i++) {
+        cin >> b[i];
+    }
+
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            cin >> cost[i][j];
+        }
+    }
+
+    int S = 0, T = m + n + 1;
+
+    // min cost
+    memset(head, -1, sizeof head);
+    cnt = -1;
+
+    for (int i = 1; i <= m; i++) {
+        add_edge(S, i, a[i], 0);
+    }
+
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            add_edge(i, m + j, INF, cost[i][j]);
+        }
+    }
+
+    for (int j = 1; j <= n; j++) {
+        add_edge(m + j, T, b[j], 0);
+    }
+
+    auto [flow1, min_cost] = mcmf(S, T, T);
+
+    // max cost
+    memset(head, -1, sizeof head);
+    cnt = -1;
+
+    for (int i = 1; i <= m; i++) {
+        add_edge(S, i, a[i], 0);
+    }
+
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            add_edge(i, m + j, INF, -cost[i][j]);
+        }
+    }
+
+    for (int j = 1; j <= n; j++) {
+        add_edge(m + j, T, b[j], 0);
+    }
+
+    auto [flow2, max_cost] = mcmf(S, T, T);
+
+    cout << min_cost << endl;
+    cout << -max_cost << endl;
 
     return 0;
 }
