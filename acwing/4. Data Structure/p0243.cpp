@@ -9,8 +9,8 @@ using ll = long long;
 const int N = 100010, M = 100010;
 
 int a[N];
-ll tr1[N * 2];
-ll tr2[N * 2];
+ll tr1[N];
+ll tr2[N];
 
 int n, m;
 

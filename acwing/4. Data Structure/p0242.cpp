@@ -9,7 +9,7 @@ using ll = long long;
 const int N = 100010, M = 100010;
 
 int a[N];
-ll tree[N * 2];
+ll tree[N];
 
 int n, m;
 
