@@ -1,14 +1,12 @@
-// https://www.acwing.com/problem/content/2196/
-// compute min cost max flow and max cost max flow
+// https://www.acwing.com/problem/content/2186/
 
 #include <bits/stdc++.h>
 using namespace std;
-
 using ll = long long;
 
-const int N = 110;
-const int M = 1010;
-const ll INF = 1e18;
+const int N = 1610;
+const int M = 10000;
+const int INF = 1e8;
 
 struct Edge {
     int to, nxt;
@@ -17,11 +15,12 @@ struct Edge {
 
 int head[N], cnt = -1;
 int a[N];
-ll dist[N];
-ll incf[N];
+ll dist[N], incf[N];
 int pre[N];
 bool inq[N];
+
 int n, S, T;
+int p, x, f, y, s;
 
 void add_edge(int u, int v, ll cap, ll cost) {
     edges[++cnt] = {v, head[u], cap, cost};
@@ -30,20 +29,22 @@ void add_edge(int u, int v, ll cap, ll cost) {
     head[v] = cnt;
 }
 
-bool spfa(int S, int T, int n) {
-    fill(dist, dist + n + 1, INF);
-    fill(incf, incf + n + 1, 0);
-    fill(pre, pre + n + 1, -1);
-    fill(inq, inq + n + 1, false);
-    queue<int> q;
+bool spfa() {
+    memset(dist, 0x3f, sizeof dist);
+    memset(pre, -1, sizeof pre);
+    memset(inq, 0, sizeof inq);
+    memset(incf, 0, sizeof incf);
     dist[S] = 0;
-    incf[S] = INF;
+    queue<int> q;
     q.push(S);
+    incf[S] = INF;
     inq[S] = true;
+
     while (!q.empty()) {
         int u = q.front();
         q.pop();
         inq[u] = false;
+
         for (int i = head[u]; i != -1; i = edges[i].nxt) {
             int v = edges[i].to;
             if (edges[i].cap > 0 && dist[v] > dist[u] + edges[i].cost) {
@@ -57,12 +58,12 @@ bool spfa(int S, int T, int n) {
             }
         }
     }
-    return dist[T] != INF;
+    return incf[T] > 0;
 }
 
-pair<ll, ll> mcmf(int S, int T, int n) {
+pair<ll, ll> mcmf(int S, int T) {
     ll max_flow = 0, min_cost = 0;
-    while (spfa(S, T, n)) {
+    while (spfa()) {
         ll flow = incf[T];
         for (int i = T; i != S; i = edges[pre[i] ^ 1].to) {
             edges[pre[i]].cap -= flow;
@@ -75,39 +76,22 @@ pair<ll, ll> mcmf(int S, int T, int n) {
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    cin >> n;
-
-    ll tot = 0;
-    for (int i = 1; i <= n; i++) {
-        cin >> a[i];
-        tot += a[i];
-    }
-    ll avg = tot / n;
-
-    int S = 0, T = n + 1;
+    cin >> n >> p >> x >> f >> y >> s;
 
     memset(head, -1, sizeof head);
+    S = 0, T = 2 * n + 1;
 
     for (int i = 1; i <= n; i++) {
-        int next = (i % n) + 1;
-        add_edge(i, next, INF, 1);
-        add_edge(next, i, INF, 1);
+        int r;
+        cin >> r;
+        add_edge(S, i, r, 0);                            // 每天会产出r[i]条旧毛巾
+        add_edge(i + n, T, r, 0);                        // 每天需要r[i]条新毛巾
+        add_edge(S, i + n, INF, p);                      // 每天可以购买若干条新毛巾，费用是p
+        if (i + 1 <= n) add_edge(i, i + 1, INF, 0);      // 每天可以留若干条旧毛巾到下一天
+        if (i + x <= n) add_edge(i, i + x + n, INF, f);  // 每天可以快洗若干条旧毛巾给x天后用，费用是f
+        if (i + y <= n) add_edge(i, i + y + n, INF, s);  // 每天可以慢洗若干条旧毛巾给y天后用，费用是s
     }
 
-    for (int i = 1; i <= n; i++) {
-        if (a[i] > avg) {
-            add_edge(S, i, a[i] - avg, 0);
-        } else if (a[i] < avg) {
-            add_edge(i, T, avg - a[i], 0);
-        }
-    }
-
-    auto [flow, max_cost] = mcmf(S, T, T);
-
-    cout << max_cost << endl;
-
+    cout << mcmf(S, T).second << endl;
     return 0;
 }

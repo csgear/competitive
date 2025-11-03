@@ -1,27 +1,23 @@
-// https://www.acwing.com/problem/content/2196/
-// compute min cost max flow and max cost max flow
+// https://www.acwing.com/problem/content/384/
 
 #include <bits/stdc++.h>
 using namespace std;
-
 using ll = long long;
 
-const int N = 110;
-const int M = 1010;
+const int N = 5010;
+const int M = 50010;
 const ll INF = 1e18;
 
 struct Edge {
     int to, nxt;
     ll cap, cost;
 } edges[M];
-
 int head[N], cnt = -1;
-int a[N];
-ll dist[N];
-ll incf[N];
-int pre[N];
+ll dist[N], incf[N], pre[N];
 bool inq[N];
-int n, S, T;
+
+int cost[55][55];
+int n, k, S, T;
 
 void add_edge(int u, int v, ll cap, ll cost) {
     edges[++cnt] = {v, head[u], cap, cost};
@@ -30,16 +26,17 @@ void add_edge(int u, int v, ll cap, ll cost) {
     head[v] = cnt;
 }
 
-bool spfa(int S, int T, int n) {
-    fill(dist, dist + n + 1, INF);
-    fill(incf, incf + n + 1, 0);
-    fill(pre, pre + n + 1, -1);
-    fill(inq, inq + n + 1, false);
+bool spfa() {
+    fill(dist, dist + N, INF);
+    fill(incf, incf + N, 0);
+    fill(pre, pre + N, -1);
+    fill(inq, inq + N, false);
     queue<int> q;
     dist[S] = 0;
     incf[S] = INF;
     q.push(S);
     inq[S] = true;
+
     while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -60,9 +57,9 @@ bool spfa(int S, int T, int n) {
     return dist[T] != INF;
 }
 
-pair<ll, ll> mcmf(int S, int T, int n) {
+pair<ll, ll> mfcf(int S, int T) {
     ll max_flow = 0, min_cost = 0;
-    while (spfa(S, T, n)) {
+    while (spfa()) {
         ll flow = incf[T];
         for (int i = T; i != S; i = edges[pre[i] ^ 1].to) {
             edges[pre[i]].cap -= flow;
@@ -74,40 +71,35 @@ pair<ll, ll> mcmf(int S, int T, int n) {
     return {max_flow, min_cost};
 }
 
+// map (x, y, t) to node id, t = 0 for in-node, t = 1 for out-node
+int f(int x, int y, int t) { return (x * n + y) * 2 + t; }
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    cin >> n;
-
-    ll tot = 0;
-    for (int i = 1; i <= n; i++) {
-        cin >> a[i];
-        tot += a[i];
-    }
-    ll avg = tot / n;
-
-    int S = 0, T = n + 1;
+    cin >> n >> k;
 
     memset(head, -1, sizeof head);
+    cnt = -1;
 
-    for (int i = 1; i <= n; i++) {
-        int next = (i % n) + 1;
-        add_edge(i, next, INF, 1);
-        add_edge(next, i, INF, 1);
-    }
+    S = 2 * n * n, T = S + 1;
 
-    for (int i = 1; i <= n; i++) {
-        if (a[i] > avg) {
-            add_edge(S, i, a[i] - avg, 0);
-        } else if (a[i] < avg) {
-            add_edge(i, T, avg - a[i], 0);
+    add_edge(S, f(0, 0, 0), k, 0);
+    add_edge(f(n - 1, n - 1, 1), T, k, 0);
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            int x;
+            cin >> x;
+            add_edge(f(i, j, 0), f(i, j, 1), 1, -x);
+            add_edge(f(i, j, 0), f(i, j, 1), INF, 0);
+            if (i < n - 1) add_edge(f(i, j, 1), f(i + 1, j, 0), INF, 0);
+            if (j < n - 1) add_edge(f(i, j, 1), f(i, j + 1, 0), INF, 0);
         }
     }
 
-    auto [flow, max_cost] = mcmf(S, T, T);
-
-    cout << max_cost << endl;
+    cout << -mfcf(S, T).second << endl;
 
     return 0;
 }
