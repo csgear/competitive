@@ -25,7 +25,7 @@ int prim() {
         res += dist[t];
 
         for (int j = 1; j <= n; j++) {
-            if (!st[j]) dist[j] = min(dist[j], g[t][j]);
+            dist[j] = min(dist[j], g[t][j]);
         }
     }
     return res;
@@ -33,6 +33,7 @@ int prim() {
 
 int main() {
     cin >> n;
+
     for (int i = 1; i <= n; i++)
         for (int j = 1; j <= n; j++) cin >> g[i][j];
 
