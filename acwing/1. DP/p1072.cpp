@@ -12,8 +12,7 @@ struct Edge {
 int head[N], cnt = -1;
 
 void add_edge(int u, int v, ll w) {
-    edges[++cnt] = {v, w};
-    edges[cnt].nxt = head[u];
+    edges[++cnt] = {v, head[u], w};
     head[u] = cnt;
 }
 

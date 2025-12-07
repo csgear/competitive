@@ -1,7 +1,7 @@
 // https://www.acwing.com/problem/content/378/
-// Bipartite matching - maximum independent set
-// Left side: items, Right side: constraints
-// Answer = total items - maximum matching
+// Bipartite graph: left = A's modes (1~n-1), right = B's modes (1~m-1)
+// Each task (a,b) with a!=0 and b!=0 is an edge.
+// Minimum machine restarts = size of minimum vertex cover = maximum matching.
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -13,19 +13,19 @@ struct Edge {
     int to, next;
 } edges[K];
 
-int head[N], cnt;
+int head[N], idx = -1;
 bool vis[N];
 int match[N];
 
 int n, m, k;
 
 void add_edge(int u, int v) {
-    edges[cnt] = {v, head[u]};
-    head[u] = cnt++;
+    edges[++idx] = {v, head[u]};
+    head[u] = idx;
 }
 
 bool find(int u) {
-    for (int i = head[u]; i != 0; i = edges[i].next) {
+    for (int i = head[u]; i != -1; i = edges[i].next) {
         int v = edges[i].to;
         if (vis[v]) continue;
         vis[v] = true;
@@ -43,9 +43,9 @@ int main() {
 
     while (cin >> n, n) {
         cin >> m >> k;
-        memset(head, 0, sizeof(head));
+        memset(head, -1, sizeof(head));
+        idx = -1;
         memset(match, -1, sizeof(match));
-        cnt = 1;
         for (int i = 0; i < k; i++) {
             int t, u, v;
             cin >> t >> u >> v;
@@ -54,7 +54,7 @@ int main() {
             }
         }
         int ans = 0;
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i < n; i++) {
             memset(vis, 0, sizeof(vis));
             if (find(i)) {
                 ans++;
