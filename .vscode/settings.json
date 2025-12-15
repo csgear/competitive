@@ -2,6 +2,7 @@
   "C_Cpp.clang_format_path": "/usr/local/bin/clang-format",
   "C_Cpp.formatting": "clangFormat",
   "clang-format.language.cpp.style": "file",
+  "clang-format.executable": "/usr/local/bin/clang-format",
 
   "[cpp]": {
     "editor.defaultFormatter": "ebextensions.clang-format-2025"
